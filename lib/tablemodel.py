@@ -28,3 +28,25 @@ class DatabaseModel:
 
         # Note that this method returns 2 variables!
         return table_content, table_headers
+
+    def get_table_filtered(self, table_name, filter_name):
+        cursor = sqlite3.connect(self.database_file).cursor()
+
+        match filter_name:
+
+            case "leerdoelen":
+                cursor.execute(f"SELECT * FROM {table_name} WHERE leerdoel NOT IN (SELECT id FROM leerdoelen)")
+            case "html_sys_code":
+                cursor.execute(f"SELECT * FROM vragen WHERE vraag LIKE '%<br>%' OR vraag LIKE '%&nbsp;%'")
+            case "empty_row":
+                cursor.execute(f"SELECT * FROM {table_name} WHERE leerdoel IS NULL OR auteur IS NULL;")
+            case "not_empty_row":
+                cursor.execute(f"SELECT * FROM ? WHERE ? IS NOT NULL;")
+
+
+        # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
+        table_headers = [column_name[0] for column_name in cursor.description]
+        table_content = cursor.fetchall()
+
+        # Note that this method returns 2 variables!
+        return table_content, table_headers

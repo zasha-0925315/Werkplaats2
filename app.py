@@ -4,6 +4,7 @@ import sys
 from flask import Flask, render_template
 
 from lib.tablemodel import DatabaseModel
+from lib.filters import filters
 from lib.demodatabase import create_demo_database
 
 # This demo glues a random database and the Flask framework. If the database file does not exist,
@@ -42,16 +43,17 @@ def table_content(table_name=None):
     if not table_name:
         return "Missing table name", 400  # HTTP 400 = Bad Request
     else:
+        filter_list = filters
         rows, column_names = dbm.get_table_content(table_name)
         return render_template(
-            "table_details.html", rows=rows, columns=column_names, table_name=table_name
+            "table_details.html", rows=rows, columns=column_names, table_name=table_name, filter_list=filter_list
         )
-@app.route("/table_details/<table_name>/<filter>")
-def table_content(table_name=None):
-    filters =
-    rows, column_names = dbm.get_table_content(table_name)
+@app.route("/table_details/<table_name>/<filter_name>")
+def table_filter(table_name=None, filter_name=None):
+
+    rows, column_names = dbm.get_table_filtered(table_name, filter_name)
     return render_template(
-        "table_details.html",filter_list=filters, rows=rows, columns=column_names, table_name=table_name
+        "table_details.html",rows=rows, columns=column_names, table_name=table_name
     )
 
 if __name__ == "__main__":
