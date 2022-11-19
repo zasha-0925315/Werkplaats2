@@ -36,6 +36,8 @@ class DatabaseModel:
 
             case "leerdoelen":
                 cursor.execute(f"SELECT * FROM {table_name} WHERE leerdoel NOT IN (SELECT id FROM leerdoelen)")
+            case "auteurs":
+                cursor.execute(f"SELECT * FROM {table_name} WHERE auteur NOT IN (SELECT id FROM auteurs)")
             case "html_sys_code":
                 cursor.execute(f"SELECT * FROM vragen WHERE vraag LIKE '%<br>%' OR vraag LIKE '%&nbsp;%'")
             case "empty_row":
