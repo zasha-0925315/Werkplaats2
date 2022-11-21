@@ -34,15 +34,15 @@ class DatabaseModel:
 
         match filter_name:
 
-            case "leerdoelen":
+            case "lege leerdoelen":
                 cursor.execute(f"SELECT * FROM {table_name} WHERE leerdoel NOT IN (SELECT id FROM leerdoelen)")
-            case "auteurs":
+            case "lege auteurs":
                 cursor.execute(f"SELECT * FROM {table_name} WHERE auteur NOT IN (SELECT id FROM auteurs)")
-            case "html_sys_code":
-                cursor.execute(f"SELECT * FROM vragen WHERE vraag LIKE '%<br>%' OR vraag LIKE '%&nbsp;%'")
-            case "empty_row":
+            case "html systeem codes":
+                cursor.execute(f"SELECT * FROM vragen WHERE vraag LIKE '%<br>%' OR vraag LIKE '%&nbsp;%' OR vraag LIKE '%¤%'")
+            case "lege rijen":
                 cursor.execute(f"SELECT * FROM {table_name} WHERE leerdoel IS NULL OR auteur IS NULL;")
-            case "not_empty_row":
+            case "niet lege rijen":
                 cursor.execute(f"SELECT * FROM ? WHERE ? IS NOT NULL;")
 
 
