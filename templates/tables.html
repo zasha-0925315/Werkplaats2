@@ -10,6 +10,22 @@
 </head>
 <body>
 <main>
+    <H2>Log in</H2>
+
+    {% if table_name == 'GET' or 'POST' %}
+        <div>
+            <h4>Gebruikersnaam:</h4>
+
+               <form class="loginform" method="POST">
+                   <input type="text" type="login" placeholder="'Jelle-1035608'" method="GET">
+            <h4>Wachtwoord:</h4>
+                   <input type="text" type="login" placeholder="'ABC123@'" method="GET">
+                    <br><br>
+                   <button class="loginbutton" name="loginknop" type="login" value="login">Log in</button>
+                   <button class="createaccount" name="aanmaakknop" type="create" value="create">Account aanmaken</button>
+               </form>
+        </div>
+            {% endif %}
     <h1>Database onderzoek</h1>
     <p>Alle tabellen in de database <i>{{ database_file }}</i>:</p>
     <ul>
