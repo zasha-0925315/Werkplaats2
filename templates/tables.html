@@ -16,13 +16,13 @@
         <div>
             <h4>Gebruikersnaam:</h4>
 
-               <form class="loginform" method="POST">
-                   <input type="text" type="login" placeholder="'Jelle-1035608'" method="GET">
+               <form class="loginform">
+                   <input type="text" id="loginusername" placeholder="'Jelle-1035608'">
             <h4>Wachtwoord:</h4>
-                   <input type="text" type="login" placeholder="'ABC123@'" method="GET">
+                   <input type="text" id="loginpassword" placeholder="'ABC123@'">
                     <br><br>
-                   <button class="loginbutton" name="loginknop" type="login" value="login">Log in</button>
-                   <button class="createaccount" name="aanmaakknop" type="create" value="create">Account aanmaken</button>
+                   <input type="submit" value="Log in">
+                   <input type="submit" value="Create account">
                </form>
         </div>
             {% endif %}
