@@ -123,3 +123,8 @@ section>section {
     main,footer {width: 98%}
     section,article {flex:none; width:100%; margin-left: 0;}
 }
+
+.knop_auteur{
+    color: white;
+    background-color: grey;
+}
