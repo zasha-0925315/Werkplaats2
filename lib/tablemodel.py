@@ -34,16 +34,16 @@ class DatabaseModel:
 
         match filter_name:
 
-            case "lege leerdoelen":
+            case "Niet bestaande leerdoelen":
                 cursor.execute(f"SELECT * FROM {table_name} WHERE leerdoel NOT IN (SELECT id FROM leerdoelen)")
-            case "lege auteurs":
+            case "Niet bestaande auteurs":
                 cursor.execute(f"SELECT * FROM {table_name} WHERE auteur NOT IN (SELECT id FROM auteurs)")
-            case "html systeem codes":
-                cursor.execute(f"SELECT * FROM vragen WHERE vraag LIKE '%<br>%' OR vraag LIKE '%&nbsp;%' OR vraag LIKE '%¤%'")
-            case "lege rijen":
+            case "Html systeem codes":
+                cursor.execute(f"SELECT * FROM {table_name} WHERE vraag LIKE '%<br>%' OR vraag LIKE '%&nbsp;%' OR vraag LIKE '%¤%'")
+            case "Lege rijen":
                 cursor.execute(f"SELECT * FROM {table_name} WHERE leerdoel IS NULL OR auteur IS NULL;")
-            case "niet lege rijen":
-                cursor.execute(f"SELECT * FROM ? WHERE ? IS NOT NULL;")
+            case "Niet lege rijen":
+                cursor.execute(f"SELECT * FROM {table_name} WHERE leerdoel IS NOT NULL OR auteur IS NOT NULL;")
 
 
         # An alternative for this 2 var approach is to set a sqlite row_factory on the connection

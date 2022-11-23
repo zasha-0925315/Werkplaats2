@@ -1,8 +1,8 @@
 filters = [
-    "lege leerdoelen",
-    "lege auteurs",
-    "html systeem codes",
-    "lege rijen",
-    "niet lege rijen",
+    "Niet bestaande leerdoelen",
+    "Niet bestaande auteurs",
+    "Html systeem codes",
+    "Lege rijen",
+    "Niet lege rijen",
 ]
 

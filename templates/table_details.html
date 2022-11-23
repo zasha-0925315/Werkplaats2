@@ -16,8 +16,9 @@
     {% if table_name == 'vragen' %}
         <div>
             <span>Zoek naar:</span>
+
             {% for filter in filter_list %}
-                <li><a href="/table_details/{{ table_name }}/{{ filter }}">{{ filter }}</a></li>
+                <li style="list-style: none"><a href="/table_details/{{ table_name }}/{{ filter }}">{{ filter }}</a></li>
             {% endfor %}
         </div>
     {% endif %}
