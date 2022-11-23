@@ -23,9 +23,11 @@
         <tbody>
         {% for row in rows %}
         <tr>
+            <button type="button">Test knop
             {% for field in row %}
             <td>{{ field }}</td>
             {% endfor %}
+            </button>
         </tr>
         {% endfor %}
         </tbody>
