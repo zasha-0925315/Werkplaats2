@@ -12,6 +12,20 @@
 <main>
     <h1>Database onderzoek</h1>
     <p>Alle rijen in de tabel <b>{{ table_name }}</b>:</p>
+
+    {% if table_name == 'vragen' %}
+        <div>
+            <span>Zoek naar:</span>
+
+            {% for filter in filter_list %}
+                <li style="list-style: none"><a href="/table_details/{{ table_name }}/{{ filter }}">{{ filter }}</a></li>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+
+
+
     <table>
         <thead>
         <tr>
