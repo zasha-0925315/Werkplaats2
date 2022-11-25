@@ -47,8 +47,12 @@ def table_content(table_name=None):
             "table_details.html", rows=rows, columns=column_names, table_name=table_name
         )
 
-@app.route("/search.html")
-def search():
+@app.route("/update")
+def update():
+    return render_template(
+        "update.html"
+    )
+
 
 
 if __name__ == "__main__":
