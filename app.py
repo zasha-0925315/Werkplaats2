@@ -20,8 +20,7 @@ DATABASE_FILE = os.path.join(app.root_path, 'databases', 'testcorrect_vragen.db'
 
 # Check if the database file exists. If not, create a demo database
 if not os.path.isfile(DATABASE_FILE):
-    print(f"Could not find database {DATABASE_FILE}, creating a demo database.")
-    create_demo_database(DATABASE_FILE)
+    print(f"Could not find database {DATABASE_FILE}")
 dbm = DatabaseModel(DATABASE_FILE)
 
 # Main route that shows a list of tables in the database
