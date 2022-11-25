@@ -1,10 +1,9 @@
 import os.path
 import sys
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request, url_for, flash, redirect
 
 from lib.tablemodel import DatabaseModel
-from lib.filters import filters
 from lib.demodatabase import create_demo_database
 
 # This demo glues a random database and the Flask framework. If the database file does not exist,
@@ -43,17 +42,33 @@ def table_content(table_name=None):
     if not table_name:
         return "Missing table name", 400  # HTTP 400 = Bad Request
     else:
-        filter_list = filters
         rows, column_names = dbm.get_table_content(table_name)
         return render_template(
-            "table_details.html", rows=rows, columns=column_names, table_name=table_name, filter_list=filter_list
+            "table_details.html", rows=rows, columns=column_names, table_name=table_name
         )
-@app.route("/table_details/<table_name>/<filter_name>")
-def table_filter(table_name=None, filter_name=None):
-
+@app.route("/table_details/<table_name>", methods=("POST", "GET"))
+def table_filter(table_name=None):
+    filter_name = ""
+    if request.method == 'POST':
+        filter_name = str(request.form['filter_name'])
     rows, column_names = dbm.get_table_filtered(table_name, filter_name)
     return render_template(
-        "table_details.html",rows=rows, columns=column_names, table_name=table_name
+        "table_details.html",rows=rows, columns=column_names, table_name=table_name, filter_name=filter_name
+    )
+
+@app.route("/table_details/<table_name>", methods=("POST", "GET"))
+def table_search(table_name=None):
+    selected_column = ""
+    typed = ""
+    way = ""
+    if request.method == 'POST':
+        selected_column = request.form['column_select']
+        typed = request.form['typed']
+        way = request.form['way']
+
+    rows, column_names = dbm.get_table_search(table_name, selected_column, typed, way)
+    return render_template(
+        "table_details.html",rows=rows, columns=column_names, table_name=table_name, selected_column=selected_column
     )
 
 if __name__ == "__main__":

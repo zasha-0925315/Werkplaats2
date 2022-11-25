@@ -34,18 +34,30 @@ class DatabaseModel:
 
         match filter_name:
 
-            case "Niet bestaande leerdoelen":
+            case "no_filter":
+                cursor.execute(f"SELECT * FROM {table_name}")
+            case "wrong_leerdoelen":
                 cursor.execute(f"SELECT * FROM {table_name} WHERE leerdoel NOT IN (SELECT id FROM leerdoelen)")
-            case "Niet bestaande auteurs":
+            case "wrong_auteurs":
                 cursor.execute(f"SELECT * FROM {table_name} WHERE auteur NOT IN (SELECT id FROM auteurs)")
-            case "Html systeem codes":
+            case "html_system_codes":
                 cursor.execute(f"SELECT * FROM {table_name} WHERE vraag LIKE '%<br>%' OR vraag LIKE '%&nbsp;%' OR vraag LIKE '%¤%'")
-            case "Lege rijen":
+            case "empty_rows":
                 cursor.execute(f"SELECT * FROM {table_name} WHERE leerdoel IS NULL OR auteur IS NULL;")
-            case "Niet lege rijen":
+            case "full_rows":
                 cursor.execute(f"SELECT * FROM {table_name} WHERE leerdoel IS NOT NULL OR auteur IS NOT NULL;")
 
 
+        # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
+        table_headers = [column_name[0] for column_name in cursor.description]
+        table_content = cursor.fetchall()
+
+        # Note that this method returns 2 variables!
+        return table_content, table_headers
+
+    def get_table_search(self, table_name, selected_column, typed, way):
+        cursor = sqlite3.connect(self.database_file).cursor()
+        cursor.execute(f"SELECT * FROM {table_name} WHERE {selected_column} {way} '%{typed}%'")
         # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
         table_headers = [column_name[0] for column_name in cursor.description]
         table_content = cursor.fetchall()
