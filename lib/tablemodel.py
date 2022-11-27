@@ -57,7 +57,15 @@ class DatabaseModel:
 
     def get_table_search(self, table_name, selected_column, typed, typed2, way):
         cursor = sqlite3.connect(self.database_file).cursor()
-        cursor.execute(f"SELECT * FROM {table_name} WHERE {selected_column} {way} '%{typed}%' AND '%{typed2}%'")
+
+        match way:
+            case "LIKE":
+                cursor.execute(f"SELECT * FROM {table_name} WHERE {selected_column} LIKE '%{typed}%'")
+            case "IS NOT":
+                cursor.execute(f"SELECT * FROM {table_name} WHERE {selected_column} IS NOT {typed}")
+            case "BETWEEN":
+                cursor.execute(f"SELECT * FROM {table_name} WHERE {selected_column} BETWEEN {typed} AND {typed2}")
+
         # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
         table_headers = [column_name[0] for column_name in cursor.description]
         table_content = cursor.fetchall()

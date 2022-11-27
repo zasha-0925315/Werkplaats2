@@ -64,18 +64,21 @@ def table_filter(table_name=None):
             return render_template(
                 "table_details.html", rows=rows, columns=column_names, table_name=table_name, selected_column=selected_column
             )
-        case "leerdoelen":
+        case "auteurs":
             selected_column = ""
             typed = ""
+            typed2 = ""
             way = ""
             if request.method == 'POST':
                 selected_column = request.form['column_select']
                 typed = request.form['typed']
+                typed2 = request.form['typed2']
                 way = request.form['way']
 
-            rows, column_names = dbm.get_table_search(table_name, selected_column, typed, way)
+            rows, column_names = dbm.get_table_search(table_name, selected_column, typed, typed2, way)
             return render_template(
-                "table_details.html", rows=rows, columns=column_names, table_name=table_name, selected_column=selected_column
+                "table_details.html", rows=rows, columns=column_names, table_name=table_name,
+                selected_column=selected_column
             )
         case "vragen":
             filter_name = ""
