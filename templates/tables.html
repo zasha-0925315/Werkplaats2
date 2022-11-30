@@ -10,26 +10,6 @@
 </head>
 <body>
 <main>
-    <H2>Log in</H2>
-
-    {% if table_name == 'GET' or 'POST' %}
-        <div>
-            <h4>Gebruikersnaam:</h4>
-
-               <form class="loginform">
-                   <input type="text" id="loginusername" placeholder="'Jelle-1035608'">
-            <h4>Wachtwoord:</h4>
-                   <input type="text" id="loginpassword" placeholder="'ABC123@'">
-                    <br><br>
-                   <input type="submit" value="Log in">
-                   <input type="submit" value="Create account">
-               </form>
-        </div>
-            {% endif %}
-</main>
-</body>
-</html>
-
     <h1>Database onderzoek</h1>
     <p>Alle tabellen in de database <i>{{ database_file }}</i>:</p>
     <ul>
@@ -37,3 +17,6 @@
         <li><a href="/table_details/{{ table }}">{{ table }}</a></li>
         {% endfor %}
     </ul>
+</main>
+</body>
+</html>
