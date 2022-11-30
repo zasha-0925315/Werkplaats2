@@ -4,15 +4,26 @@
     <meta charset="UTF-8">
     <title>Update</title>
 </head>
-<body>
+    <body>
 
-<h1>Update page</h1>
-    <p>Dit is de update page</p>
+     <h1>Update page</h1>
+        <p>Dit is de update page</p>
 
-{{  }}
-<form action="#" method="post">
-    <p>leerdoel: <input type="text" id="text"></p> <br><br>
-    <input type="submit" value="update">
-</form>
-</body>
+     {% if table_name == 'leerdoelen' %}
+        <form action="#" method="post">
+            <p>leerdoel: <input type="text" id="text"></p> <br><br>
+            <input type="submit" value="update">
+        </form>
+    {% endif %}
+
+    {% if table_name == 'vragen' %}
+        <form action="#" method="post">
+         <p>vraag: </p>
+        </form>
+    {% endif %}
+
+
+
+
+    </body>
 </html>
