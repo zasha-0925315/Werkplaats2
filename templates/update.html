@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/basic.css" type="text/css">
     <title>Update</title>
 </head>
     <body>
@@ -20,14 +21,14 @@
 
      {% if table_name == 'leerdoelen' %}
         <form action="#" method="POST">
-            <p>leerdoel: <input type="text" name="leerdoel" value="{{  }}"></p> <br><br>
+            <p>leerdoel: <input type="text" name="leerdoel" value="{{ leerdoel.leerdoelen }}"></p> <br><br>
             <button type="submit" value="update"></button>
         </form>
     {% endif %}
-
+     <br> <br>
     {% if table_name == 'vragen' %}
         <form action="#" method="POST">
-         <p>vraag: <input type="text" name="text" value="{{ vraag.vraag }}"></p>
+         <p>vraag: <input type="text" name="text" value="{{ vraag.vragen }}"></p>
             <button type="submit" value="update"></button>
         </form>
     {% endif %}

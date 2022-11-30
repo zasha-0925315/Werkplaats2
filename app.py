@@ -47,10 +47,12 @@ def table_content(table_name=None):
             "table_details.html", rows=rows, columns=column_names, table_name=table_name
         )
 
-@app.route("/table_details/<table_name>/update")
-def update():
-    if medewerker != 0 or 1:
-        medewerker = 0
+@app.route("/table_details/<table_name>/update", methods =['GET', 'POST'])
+def update(table_name=id):
+    match table_name
+
+    # if medewerker != 0 or 1:
+    #     medewerker = 0
 
     return render_template(
         "update.html"
