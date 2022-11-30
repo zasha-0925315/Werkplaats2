@@ -9,6 +9,12 @@
      <h1>Update page</h1>
         <p>Dit is de update page</p>
 
+     {% if table_name == 'auteurs' %}
+        <form action="#" method="post">
+           <p>Auteur naam: <input type="text" id=""></p>
+        </form>
+     {% endif %}
+
      {% if table_name == 'leerdoelen' %}
         <form action="#" method="post">
             <p>leerdoel: <input type="text" id="text"></p> <br><br>
@@ -21,6 +27,7 @@
          <p>vraag: </p>
         </form>
     {% endif %}
+
 
 
 
