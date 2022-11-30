@@ -15,15 +15,57 @@
 
     {% if table_name == 'vragen' %}
         <div>
-            <span>Zoek naar:</span>
-
-            {% for filter in filter_list %}
-                <li style="list-style: none"><a href="/table_details/{{ table_name }}/{{ filter }}">{{ filter }}</a></li>
-            {% endfor %}
+            <form method="post">
+                <label for="filter_name">Zoek naar:</label>
+                <select id="filter_name" name="filter_name">
+                    <option value="no_filter" {% if filter_name == "no_filter" %}selected{% endif %}>Geen filter</option>
+                    <option value="wrong_leerdoelen" {% if filter_name == "wrong_leerdoelen" %}selected{% endif %}>Niet bestaande leerdoelen</option>
+                    <option value="wrong_auteurs" {% if filter_name == "wrong_auteurs" %}selected{% endif %}>Niet bestaande auteurs</option>
+                    <option value="html_system_codes" {% if filter_name == "html_system_codes" %}selected{% endif %}>Html systeem codes</option>
+                    <option value="empty_rows" {% if filter_name == "empty_rows" %}selected{% endif %}>Lege rijen</option>
+                    <option value="full_rows" {% if filter_name == "full_rows" %}selected{% endif %}>Niet lege rijen</option>
+                </select>
+                <button type="submit">Filter</button>
+            </form>
         </div>
     {% endif %}
 
+    {% if table_name == 'leerdoelen' or table_name == 'auteurs' %}
+        <div>
+            <span>Zoek in deze tabel naar:</span>
+            <form method="post">
+                <div>
+                    <label for="column_select">Welke kolom:</label>
+                    <select id="column_select" name="column_select">
+                        {% for column in columns %}
+                            <option>{{ column }}</option>
+                            <option value="leerdoelid">{{ leerdoelnaam }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label for="way">zoek manier</label>
+                    <select id="way" name="way">
+                        <option value="LIKE">bevat</option>
+                        <option value="IS NOT">is niet gelijk aan</option>
+                        <option value="BETWEEN">tussen</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="typed">Waarde(s)</label>
+                    <input id="typed" type="text" name="typed">
+                    <label for="typed2">-</label>
+                    <input id="typed2" type="text" name="typed2" placeholder="alleen nodig voor tussen">
+                </div>
+                <div>
+                    <button type="submit">Search</button>
+                </div>
+            </form>
+            <a href="/table_details/{{ table_name }}"><button>Reset</button></a>
 
+
+        </div>
+    {% endif %}
 
 
     <table>
