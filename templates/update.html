@@ -10,22 +10,24 @@
         <p>Dit is de update page</p>
 
      {% if table_name == 'auteurs' %}
-        <form action="#" method="post">
-            <p>Auteur naam: <input type="text" id="text"></p>
+        <form action="#" method="POST">
+            <p>voornaam: <input type="text" name="voornaam" value="{{ voornaam.auteurs }}"></p>
+            <p>achternaam: <input type="text" name="achternaam" value="{{ achternaam.auteurs }}"></p>
+            <p>medewerker: <input type="checkbox" name="medewerker" value="{{ medewerker.auteurs }}"></p>
             <button type="submit" value="update"></button>
         </form>
      {% endif %}
 
      {% if table_name == 'leerdoelen' %}
-        <form action="#" method="post">
-            <p>leerdoel: <input type="text" id="text"></p> <br><br>
+        <form action="#" method="POST">
+            <p>leerdoel: <input type="text" name="leerdoel" value="{{  }}"></p> <br><br>
             <button type="submit" value="update"></button>
         </form>
     {% endif %}
 
     {% if table_name == 'vragen' %}
-        <form action="#" method="post">
-         <p>vraag: <textarea name="" id="" cols="30" rows="10" placeholder="De vraag"></textarea> </p>
+        <form action="#" method="POST">
+         <p>vraag: <input type="text" name="text" value="{{ vraag.vraag }}"></p>
             <button type="submit" value="update"></button>
         </form>
     {% endif %}
