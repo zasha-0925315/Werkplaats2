@@ -11,20 +11,22 @@
 
      {% if table_name == 'auteurs' %}
         <form action="#" method="post">
-           <p>Auteur naam: <input type="text" id=""></p>
+            <p>Auteur naam: <input type="text" id="text"></p>
+            <button type="submit" value="update"></button>
         </form>
      {% endif %}
 
      {% if table_name == 'leerdoelen' %}
         <form action="#" method="post">
             <p>leerdoel: <input type="text" id="text"></p> <br><br>
-            <input type="submit" value="update">
+            <button type="submit" value="update"></button>
         </form>
     {% endif %}
 
     {% if table_name == 'vragen' %}
         <form action="#" method="post">
-         <p>vraag: </p>
+         <p>vraag: <textarea name="" id="" cols="30" rows="10" placeholder="De vraag"></textarea> </p>
+            <button type="submit" value="update"></button>
         </form>
     {% endif %}
 
