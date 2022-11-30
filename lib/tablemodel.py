@@ -37,16 +37,20 @@ class DatabaseModel:
             case "no_filter":
                 cursor.execute(f"SELECT * FROM {table_name}")
             case "wrong_leerdoelen":
-                cursor.execute(f"SELECT * FROM {table_name} WHERE leerdoel NOT IN (SELECT id FROM leerdoelen)")
+                cursor.execute(f"SELECT * FROM {table_name} W"
+                               f"HERE leerdoel NOT IN (SELECT id FROM leerdoelen)")
             case "wrong_auteurs":
-                cursor.execute(f"SELECT * FROM {table_name} WHERE auteur NOT IN (SELECT id FROM auteurs)")
+                cursor.execute(f"SELECT * FROM {table_name} "
+                               f"WHERE auteur NOT IN (SELECT id FROM auteurs)")
             case "html_system_codes":
-                cursor.execute(f"SELECT * FROM {table_name} WHERE vraag LIKE '%<br>%' OR vraag LIKE '%&nbsp;%' OR vraag LIKE '%¤%'")
+                cursor.execute(f"SELECT * FROM {table_name} "
+                               f"WHERE vraag LIKE '%<br>%' OR vraag LIKE '%&nbsp;%' OR vraag LIKE '%¤%'")
             case "empty_rows":
-                cursor.execute(f"SELECT * FROM {table_name} WHERE leerdoel IS NULL OR auteur IS NULL;")
+                cursor.execute(f"SELECT * FROM {table_name} "
+                               f"WHERE leerdoel IS NULL OR auteur IS NULL;")
             case "full_rows":
-                cursor.execute(f"SELECT * FROM {table_name} WHERE leerdoel IS NOT NULL OR auteur IS NOT NULL;")
-
+                cursor.execute(f"SELECT * FROM {table_name} "
+                               f"WHERE leerdoel IS NOT NULL OR auteur IS NOT NULL;")
 
         # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
         table_headers = [column_name[0] for column_name in cursor.description]
@@ -60,11 +64,14 @@ class DatabaseModel:
 
         match way:
             case "LIKE":
-                cursor.execute(f"SELECT * FROM {table_name} WHERE {selected_column} LIKE '%{typed}%'")
+                cursor.execute(f"SELECT * FROM {table_name} "
+                               f"WHERE {selected_column} LIKE '%{typed}%'")
             case "IS NOT":
-                cursor.execute(f"SELECT * FROM {table_name} WHERE {selected_column} IS NOT {typed}")
+                cursor.execute(f"SELECT * FROM {table_name} "
+                               f"WHERE {selected_column} IS NOT {typed}")
             case "BETWEEN":
-                cursor.execute(f"SELECT * FROM {table_name} WHERE {selected_column} BETWEEN {typed} AND {typed2}")
+                cursor.execute(f"SELECT * FROM {table_name} "
+                               f"WHERE {selected_column} BETWEEN {typed} AND {typed2}")
 
         # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
         table_headers = [column_name[0] for column_name in cursor.description]

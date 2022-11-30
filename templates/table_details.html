@@ -39,6 +39,7 @@
                     <select id="column_select" name="column_select">
                         {% for column in columns %}
                             <option>{{ column }}</option>
+                            <option value="leerdoelid">{{ leerdoelnaam }}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -65,8 +66,6 @@
 
         </div>
     {% endif %}
-
-
 
 
     <table>

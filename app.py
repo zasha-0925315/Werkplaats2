@@ -64,7 +64,7 @@ def table_filter(table_name=None):
             return render_template(
                 "table_details.html", rows=rows, columns=column_names, table_name=table_name, selected_column=selected_column
             )
-        case "auteurs":
+        case "leerdoelen":
             selected_column = ""
             typed = ""
             typed2 = ""
