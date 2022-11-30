@@ -118,6 +118,14 @@ section>section {
     text-align: center;
 }
 
+#like_input{
+    display: block;
+}
+
+#between_input{
+    display: none;
+}
+
 @media (max-width: 481px) {
     body {font-size: 18px}
     main,footer {width: 98%}

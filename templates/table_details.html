@@ -39,7 +39,6 @@
                     <select id="column_select" name="column_select">
                         {% for column in columns %}
                             <option>{{ column }}</option>
-                            <option value="leerdoelid">{{ leerdoelnaam }}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -49,13 +48,18 @@
                         <option value="LIKE">bevat</option>
                         <option value="IS NOT">is niet gelijk aan</option>
                         <option value="BETWEEN">tussen</option>
+                        <option value="WRONG DATA TYPE">verkeerde datatype</option>
                     </select>
                 </div>
-                <div>
+                <div id="like_input">
                     <label for="typed">Waarde(s)</label>
                     <input id="typed" type="text" name="typed">
-                    <label for="typed2">-</label>
-                    <input id="typed2" type="text" name="typed2" placeholder="alleen nodig voor tussen">
+                </div>
+                <div id="between_input">
+                    <label for="between_typed">Waarde(s)</label>
+                    <input id="between_typed" type="text" name="typed">
+                    <label for="between_typed2">-</label>
+                    <input id="between_typed2" type="text" name="typed2">
                 </div>
                 <div>
                     <button type="submit">Search</button>
@@ -80,7 +84,7 @@
         {% for row in rows %}
         <tr>
             {% for field in row %}
-            <td>{{ field }}</td>
+                <td>{{ field }}</td>
             {% endfor %}
         </tr>
         {% endfor %}
@@ -88,6 +92,7 @@
 
     </table>
 </main>
+<script src="../static/dynamic_filter.js"></script>
 </body>
 
 </html>

@@ -46,6 +46,7 @@ def table_content(table_name=None):
         return render_template(
             "table_details.html", rows=rows, columns=column_names, table_name=table_name
         )
+
 @app.route("/table_details/<table_name>", methods=("POST", "GET"))
 def table_filter(table_name=None):
     match table_name:

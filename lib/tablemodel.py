@@ -37,8 +37,8 @@ class DatabaseModel:
             case "no_filter":
                 cursor.execute(f"SELECT * FROM {table_name}")
             case "wrong_leerdoelen":
-                cursor.execute(f"SELECT * FROM {table_name} W"
-                               f"HERE leerdoel NOT IN (SELECT id FROM leerdoelen)")
+                cursor.execute(f"SELECT * FROM {table_name} "
+                               f"WHERE leerdoel NOT IN (SELECT id FROM leerdoelen)")
             case "wrong_auteurs":
                 cursor.execute(f"SELECT * FROM {table_name} "
                                f"WHERE auteur NOT IN (SELECT id FROM auteurs)")
