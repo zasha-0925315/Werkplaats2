@@ -93,7 +93,7 @@ button:hover, button:focus, input:hover, textarea:hover, select:hover {opacity: 
 
 section {display: flex; flex-flow: row wrap}
 
-[style*="--c:"], section>section, aside, article {flex:var(--c,1); margin:var(--m1)}
+[style*="--c:"], section>section, aside, article {flex:var(--c1); margin:var(--m1)}
 
 /* Cards */
 
@@ -118,11 +118,15 @@ section>section {
     text-align: center;
 }
 
-#like_input{
+#like_input {
     display: block;
 }
 
-#between_input{
+#between_input {
+    display: none;
+}
+
+#data_type_input {
     display: none;
 }
 

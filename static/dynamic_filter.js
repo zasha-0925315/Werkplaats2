@@ -1,23 +1,34 @@
 const way = document.getElementById('way');
 const like_input = document.getElementById('like_input')
 const between_input = document.getElementById('between_input')
+const data_type_input = document.getElementById('data_type_input')
 
 way.onchange = function () {
   switch (way.value){
-    case 'LIKE':
+    case 'like':
       like_input.style.display = "block";
       between_input.style.display = "none";
+      data_type_input.style.display = "none";
+
       break;
-    case 'IS NOT':
+    case 'is_not':
       like_input.style.display = "block";
       between_input.style.display = "none";
+      data_type_input.style.display = "none";
       break;
-    case 'BETWEEN':
+    case 'between':
       like_input.style.display = "none";
       between_input.style.display = "block";
+      data_type_input.style.display = "none";
+      break;
+    case 'wrong_data_type':
+      like_input.style.display = "none";
+      between_input.style.display = "none";
+      data_type_input.style.display = "block";
       break;
     default:
       like_input.style.display = "block";
-      between_input.style.display = "none";
+      between_input.style.display = "block";
+      data_type_input.style.display = "block";
   }
 }

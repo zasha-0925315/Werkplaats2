@@ -28,6 +28,8 @@ dbm = DatabaseModel(DATABASE_FILE)
 # It is a way to "decorate" a function with additional functionality. You
 # can safely ignore this for now - or look into it as it is a really powerful
 # concept in Python.
+
+
 @app.route("/")
 def index():
     tables = dbm.get_table_list()
@@ -47,38 +49,40 @@ def table_content(table_name=None):
             "table_details.html", rows=rows, columns=column_names, table_name=table_name
         )
 
+
 @app.route("/table_details/<table_name>", methods=("POST", "GET"))
 def table_filter(table_name=None):
     match table_name:
-        case "auteurs":
+        case "auteurs" | "leerdoelen":
             selected_column = ""
             typed = ""
-            typed2 = ""
+            between_typed = ""
+            between_typed2 = ""
+            data_type = ""
             way = ""
+
             if request.method == 'POST':
                 selected_column = request.form['column_select']
                 typed = request.form['typed']
-                typed2 = request.form['typed2']
+                between_typed = request.form['between_typed']
+                between_typed2 = request.form['between_typed2']
+                data_type = request.form['data_type']
                 way = request.form['way']
 
-            rows, column_names = dbm.get_table_search(table_name, selected_column, typed, typed2, way)
-            return render_template(
-                "table_details.html", rows=rows, columns=column_names, table_name=table_name, selected_column=selected_column
+            rows, column_names = dbm.get_table_search(
+                table_name,
+                selected_column,
+                typed,
+                between_typed,
+                between_typed2,
+                data_type,
+                way
             )
-        case "leerdoelen":
-            selected_column = ""
-            typed = ""
-            typed2 = ""
-            way = ""
-            if request.method == 'POST':
-                selected_column = request.form['column_select']
-                typed = request.form['typed']
-                typed2 = request.form['typed2']
-                way = request.form['way']
-
-            rows, column_names = dbm.get_table_search(table_name, selected_column, typed, typed2, way)
             return render_template(
-                "table_details.html", rows=rows, columns=column_names, table_name=table_name,
+                "table_details.html",
+                rows=rows,
+                columns=column_names,
+                table_name=table_name,
                 selected_column=selected_column
             )
         case "vragen":
@@ -87,7 +91,7 @@ def table_filter(table_name=None):
                 filter_name = str(request.form['filter_name'])
             rows, column_names = dbm.get_table_filtered(table_name, filter_name)
             return render_template(
-                "table_details.html",rows=rows, columns=column_names, table_name=table_name, filter_name=filter_name
+                "table_details.html", rows=rows, columns=column_names, table_name=table_name, filter_name=filter_name
             )
 
 

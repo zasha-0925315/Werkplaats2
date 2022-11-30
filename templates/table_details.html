@@ -45,29 +45,35 @@
                 <div>
                     <label for="way">zoek manier</label>
                     <select id="way" name="way">
-                        <option value="LIKE">bevat</option>
-                        <option value="IS NOT">is niet gelijk aan</option>
-                        <option value="BETWEEN">tussen</option>
-                        <option value="WRONG DATA TYPE">verkeerde datatype</option>
+                        <option value="like">bevat</option>
+                        <option value="is_not">is niet gelijk aan</option>
+                        <option value="between">tussen</option>
+                        <option value="wrong_data_type">verkeerde datatype</option>
                     </select>
                 </div>
                 <div id="like_input">
-                    <label for="typed">Waarde(s)</label>
+                    <label for="typed">Waarde</label>
                     <input id="typed" type="text" name="typed">
                 </div>
                 <div id="between_input">
-                    <label for="between_typed">Waarde(s)</label>
-                    <input id="between_typed" type="text" name="typed">
+                    <label for="between_typed">Waardes</label>
+                    <input id="between_typed" type="text" name="between_typed" value="">
                     <label for="between_typed2">-</label>
-                    <input id="between_typed2" type="text" name="typed2">
+                    <input id="between_typed2" type="text" name="between_typed2" value="">
+                </div>
+                <div id="data_type_input">
+                    <label for="data_type">data type</label>
+                    <select id="data_type" name="data_type">
+                        <option value="string">tekst</option>
+                        <option value="boolean">boolean</option>
+                        <option value="int">getal</option>
+                    </select>
                 </div>
                 <div>
                     <button type="submit">Search</button>
                 </div>
             </form>
             <a href="/table_details/{{ table_name }}"><button>Reset</button></a>
-
-
         </div>
     {% endif %}
 

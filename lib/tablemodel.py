@@ -59,19 +59,40 @@ class DatabaseModel:
         # Note that this method returns 2 variables!
         return table_content, table_headers
 
-    def get_table_search(self, table_name, selected_column, typed, typed2, way):
+    def get_table_search(self, table_name, selected_column, typed, between_typed, between_typed2, data_type, way):
         cursor = sqlite3.connect(self.database_file).cursor()
 
+        convertable_value = []
+        unconvertable_values = []
+
+        match data_type:
+            case "string":
+                print(0)
+            case "boolean":
+                print(1)
+            case "int":
+                for data in data_type:
+                    result = isinstance(data, int)
+                    if result is True:
+                        convertable_value.append(data)
+                    else:
+                        unconvertable_values.append(data)
+                    print(convertable_value)
+                    print(unconvertable_values)
+
         match way:
-            case "LIKE":
+            case "like":
                 cursor.execute(f"SELECT * FROM {table_name} "
                                f"WHERE {selected_column} LIKE '%{typed}%'")
-            case "IS NOT":
+            case "is_not":
                 cursor.execute(f"SELECT * FROM {table_name} "
                                f"WHERE {selected_column} IS NOT {typed}")
-            case "BETWEEN":
+            case "between":
                 cursor.execute(f"SELECT * FROM {table_name} "
-                               f"WHERE {selected_column} BETWEEN {typed} AND {typed2}")
+                               f"WHERE {selected_column} BETWEEN {between_typed} AND {between_typed2}")
+            case "wrong_data_type":
+                cursor.execute(f"SELECT * FROM {table_name} "
+                               f"WHERE {selected_column} LIKE '1$'")
 
         # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
         table_headers = [column_name[0] for column_name in cursor.description]
