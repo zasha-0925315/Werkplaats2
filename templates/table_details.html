@@ -12,9 +12,14 @@
 <main>
     <h1>Database onderzoek</h1>
     <p>Alle rijen in de tabel <b>{{ table_name }}</b>:</p>
+
+
     <table>
         <thead>
         <tr>
+        <br><button type="button" class="knop_auteur"><a href="update">Test knop
+        </a>
+        </button><br>
             {% for column in columns %}
             <th>{{ column }}</th>
             {% endfor %}
@@ -23,15 +28,12 @@
         <tbody>
         {% for row in rows %}
         <tr>
-            <br><button type="button" class="knop_auteur">Test knop
             {% for field in row %}
             <td>{{ field }}</td>
             {% endfor %}
-        </button></br>
         </tr>
         {% endfor %}
         </tbody>
-
     </table>
 </main>
 </body>
