@@ -17,9 +17,6 @@
     <table>
         <thead>
         <tr>
-        <br><button type="button" class="knop_auteur"><a href="update">Test knop
-        </a>
-        </button><br>
             {% for column in columns %}
             <th>{{ column }}</th>
             {% endfor %}
@@ -31,11 +28,11 @@
             {% for field in row %}
             <td>{{ field }}</td>
             {% endfor %}
+            <td><button type="button"><a href="update.html"></a>Knop</button></td>
         </tr>
         {% endfor %}
         </tbody>
     </table>
 </main>
 </body>
-
 </html>
