@@ -49,10 +49,13 @@ def table_content(table_name=None):
 
 @app.route("/table_details/<table_name>/update", methods =['GET', 'POST'])
 def update(table_name=id):
-    match table_name
+    match table_name:
+        case "auteurs":
 
-    # if medewerker != 0 or 1:
-    #     medewerker = 0
+        case "leerdoelen":
+
+        case "vragen":
+
 
     return render_template(
         "update.html"
