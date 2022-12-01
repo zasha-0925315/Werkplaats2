@@ -12,9 +12,9 @@
 
      {% if table_name == 'auteurs' %}
         <form action="#" method="POST">
-            <p>voornaam: <input type="text" name="voornaam" value="{{ voornaam.auteurs }}"></p>
-            <p>achternaam: <input type="text" name="achternaam" value="{{ achternaam.auteurs }}"></p>
-            <p>medewerker: <input type="checkbox" name="medewerker" value="{{ medewerker.auteurs }}"></p>
+            <p>voornaam: <input type="text" name="voornaam" value="{{ row[1] }}"></p>
+            <p>achternaam: <input type="text" name="achternaam" value="{{ row[2] }}"></p>
+            <p>medewerker: <input type="checkbox"  {% if row[4] %}checked{% endif %} name="medewerker" ></p>
             <button type="submit" value="update"></button>
         </form>
      {% endif %}

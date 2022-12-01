@@ -28,3 +28,13 @@ class DatabaseModel:
 
         # Note that this method returns 2 variables!
         return table_content, table_headers
+
+    def get_data(self, table_name, id):
+        cursor = sqlite3.connect(self.database_file).cursor()
+        cursor.execute(f"SELECT * FROM {table_name} WHERE id={id} ")
+        # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
+        table_headers = [column_name[0] for column_name in cursor.description]
+        table_content = cursor.fetchone()
+
+        # Note that this method returns 2 variables!
+        return table_content, table_headers

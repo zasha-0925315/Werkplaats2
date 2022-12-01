@@ -47,18 +47,19 @@ def table_content(table_name=None):
             "table_details.html", rows=rows, columns=column_names, table_name=table_name
         )
 
-@app.route("/table_details/<table_name>/update", methods =['GET', 'POST'])
-def update(table_name=id):
-    match table_name:
-        case "auteurs":
-
-        case "leerdoelen":
-
-        case "vragen":
-
+@app.route("/table_details/<table_name>/<id>/update", methods =['GET', 'POST'])
+def update(table_name, id):
+    # match table_name:
+    #     case "auteurs":
+    #
+    #     case "leerdoelen":
+    #
+    #     case "vragen":
+    row, column_names = dbm.get_data(table_name, id)
+    print(row)
 
     return render_template(
-        "update.html"
+        "update.html", table_name=table_name, row=row
     )
 
 
