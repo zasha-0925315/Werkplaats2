@@ -15,15 +15,14 @@
         <form action="#" method="POST">
             <p>voornaam: <input type="text" name="voornaam" value="{{ row[1] }}"></p>
             <p>achternaam: <input type="text" name="achternaam" value="{{ row[2] }}"></p>
-            <p>medewerker: <input type="checkbox"  {% if row[4] %}checked{% endif %} name="medewerker" ></p>
+            <p>medewerker: <input type="checkbox"  {% if row[4] %} checked{% endif %} name="medewerker" ></p>
             <button type="submit" value="update"></button>
         </form>
      {% endif %}
 
      {% if table_name == 'leerdoelen' %}
         <form action="#" method="POST">
-            <p>leerdoel</p>
-            <p>vraag: <input type="text" name="leerdoel" value="{{ row[1] }}"></p> <br><br>
+            <p>leerdoel: <input type="text" name="leerdoel" value="{{ row[1] }}"></p> <br><br>
             <button type="submit" value="update"></button>
         </form>
     {% endif %}
@@ -31,7 +30,7 @@
     {% if table_name == 'vragen' %}
         <form action="#" method="POST">
             <p>vraag: <input type="text" name="text" value="{{ row[2] }}"></p> <br><br>
-            <p>auteur: </p>
+            <p>auteur: <input type="text" name="auteur" value="{{ row[3] }}"></p>
             <button type="submit" value="update"></button>
         </form>
     {% endif %}
