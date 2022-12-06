@@ -5,7 +5,8 @@ from flask import Flask, render_template, redirect, url_for, request
 
 from lib.tablemodel import DatabaseModel
 from lib.filters import filters
-
+from lib.Login_username import Login_usernames
+from lib.Login_password import Login_passwords
 # This demo glues a random database and the Flask framework. If the database file does not exist,
 # a simple demo dataset will be created.
 LISTEN_ALL = "0.0.0.0"
@@ -39,7 +40,7 @@ def login_index():
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['username'] != 'hoi' or request.form['password'] != '123':
+        if request.form['username'] not in Login_usernames[0] or request.form['password'] not in Login_passwords[0]:
             error = 'Invalid Credentials. Please try again.'
         else:
             return redirect(url_for('index'))
