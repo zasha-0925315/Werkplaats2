@@ -40,8 +40,8 @@ def login_index():
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['username'] not in Login_usernames[0] or request.form['password'] not in Login_passwords[0]:
-            error = 'Invalid Credentials. Please try again.'
+        if request.form['username'] not in Login_usernames or request.form['password'] not in Login_passwords:
+            error = 'Gebruikersnaam of wachtwoord is niet correct. Probeer het opnieuw'
         else:
             return redirect(url_for('index'))
     return render_template('login.html', error=error)
