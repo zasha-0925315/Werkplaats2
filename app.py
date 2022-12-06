@@ -1,7 +1,7 @@
 import os.path
 import sys
 
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for, request
 
 from lib.tablemodel import DatabaseModel
 from lib.filters import filters
@@ -34,7 +34,18 @@ def login_index():
     "login.html"
     )
 
-@app.route("/start")
+# Route for handling the login page logic
+@app.route('/', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if request.form['username'] != 'hoi' or request.form['password'] != '123':
+            error = 'Invalid Credentials. Please try again.'
+        else:
+            return redirect(url_for('index'))
+    return render_template('login.html', error=error)
+
+@app.route("/home")
 def index():
     tables = dbm.get_table_list()
     return render_template(

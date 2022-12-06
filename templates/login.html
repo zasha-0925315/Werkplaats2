@@ -9,23 +9,19 @@
     <link rel="stylesheet" href="/static/basic.css" type="text/css">
 </head>
 <body>
-<main>
-    <H2>Log in</H2>
-
-    {% if table_name == 'GET' or 'POST' %}
-        <div>
-            <h4>Gebruikersnaam:</h4>
-
-               <form class="loginform">
-                   <input type="text" id="loginusername" placeholder="'Jelle-1035608'">
-            <h4>Wachtwoord:</h4>
-                   <input type="text" id="loginpassword" placeholder="'ABC123@'">
-                    <br><br>
-                   <input type="submit" value="Log in">
-                   <input type="submit" value="Create account">
-               </form>
-        </div>
-            {% endif %}
-</main>
+ <div class="container">
+      <h1>Log in</h1>
+      <br>
+      <form action="" method="post">
+        <input type="text" placeholder="Username" name="username" value="{{
+          request.form.username }}"><br><br>
+         <input type="password" placeholder="Password" name="password" value="{{
+          request.form.password }}"><br><br>
+        <input class="btn btn-default" type="submit" value="Login">
+      </form>
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
+    </div>
 </body>
 </html>
