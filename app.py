@@ -6,6 +6,7 @@ from flask import Flask, render_template, request, url_for, flash, redirect
 from lib.tablemodel import DatabaseModel
 from lib.demodatabase import create_demo_database
 
+from lib.Login_details import Login_details
 # This demo glues a random database and the Flask framework. If the database file does not exist,
 # a simple demo dataset will be created.
 LISTEN_ALL = "0.0.0.0"
@@ -29,14 +30,33 @@ dbm = DatabaseModel(DATABASE_FILE)
 # can safely ignore this for now - or look into it as it is a really powerful
 # concept in Python.
 
-
 @app.route("/")
+def login_index():
+    return render_template(
+    "login.html"
+    )
+
+# Route for handling the login page logic
+@app.route('/', methods=['GET', 'POST'])
+def login():
+    Username = request.form.get('Username')
+    Password = request.form.get('Password')
+    if request.method == 'POST':
+        data = Login_details
+        if Username in data:
+            if Password == data[Username]:
+                return redirect(url_for('index'))
+            else:
+                return redirect(url_for('login'))
+        else:
+            return redirect(url_for('login'))
+
+@app.route("/home")
 def index():
     tables = dbm.get_table_list()
     return render_template(
         "tables.html", table_list=tables, database_file=DATABASE_FILE
     )
-
 
 # The table route displays the content of a table
 @app.route("/table_details/<table_name>")
