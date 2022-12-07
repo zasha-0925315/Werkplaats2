@@ -67,12 +67,9 @@ class DatabaseModel:
         data_type_query = ""
 
         match data_type:
-            case "string":
-                cursor.execute(f"SELECT * FROM {table_name} "
-                               f"WHERE typeof({selected_column})!='real'")
             case "boolean":
                 data_type_query = f"WHERE {selected_column} IS NOT '0' AND {selected_column} IS NOT '1'"
-            case "int":
+            case "date_1900":
                 data_type_query = f"WHERE {selected_column} < 1900"
 
         match way:
