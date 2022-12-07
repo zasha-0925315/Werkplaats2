@@ -49,7 +49,7 @@ def table_content(table_name=None):
 
 
 @app.route("/table_details/<id>/update")
-def update():
+def update(id):
         return render_template(
             "update.html"
         )
