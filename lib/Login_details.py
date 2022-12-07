@@ -1,5 +1,7 @@
 Login_details = {
-    "Jelle": "1111",
-    "Joost": "2222",
-    "Rob": "3333"
+    "Jelle": "Jelle1",
+    "Zasha": "Zasha1",
+    "Dylan": "Dylan1",
+    "Jordy": "Jordy1",
+    "Ishan": "Ishan1"
 }
