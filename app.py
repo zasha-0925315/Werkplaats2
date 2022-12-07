@@ -28,6 +28,7 @@ dbm = DatabaseModel(DATABASE_FILE)
 # concept in Python.
 
 
+# This is the main route that shows the login page
 @app.route("/")
 def login_index():
     return render_template(
@@ -35,22 +36,28 @@ def login_index():
     )
 
 
-# Route for handling the login page logic
+# Route that handles the login form
 @app.route('/', methods=['GET', 'POST'])
 def login():
+    # Check if the form was submitted
     Username = request.form.get('Username')
     Password = request.form.get('Password')
     if request.method == 'POST':
+        # Check if the username and password are correct
         data = Login_details
         if Username in data:
             if Password == data[Username]:
+                # If the username and password are correct, redirect to the main page
                 return redirect(url_for('index'))
             else:
+                # If the password is incorrect, return to the login page
                 return redirect(url_for('login'))
         else:
+            # If the username is incorrect, return to the login page
             return redirect(url_for('login'))
 
 
+# This is the main route that shows the index page
 @app.route("/home")
 def index():
     tables = dbm.get_table_list()

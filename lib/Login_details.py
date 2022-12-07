@@ -1,3 +1,4 @@
+# Logins
 Login_details = {
     "Jelle": "Jelle1",
     "Zasha": "Zasha1",
