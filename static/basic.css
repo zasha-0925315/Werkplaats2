@@ -135,3 +135,75 @@ section>section {
     main,footer {width: 98%}
     section,article {flex:none; width:100%; margin-left: 0;}
 }
+
+.container__large {
+    margin: 0 auto;
+    max-width: 1145px;
+    padding: 0 20px;
+}
+
+.nav__inner, .nav__left {
+    display: -webkit-flex;
+    display: flex;
+}
+
+.nav__inner {
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    min-height: 70px;
+}
+
+.nav__left {
+    margin-left: -60px;
+}
+
+@media (max-width: 1380px) {
+    .nav__left {
+        margin-left: 0;
+    }
+}
+
+.nav__right {
+    -webkit-align-items: center;
+    align-items: center;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.nav__logo, .nav__menu {
+    display: -webkit-flex;
+    display: flex;
+}
+
+a {
+    background-color: transparent;
+    box-sizing: border-box;
+}
+
+.nav__menu {
+    -webkit-align-items: center;
+    align-items: center;
+    list-style: none;
+    margin: 0 0 0 25px;
+    padding: 0;
+}
+
+@media (max-width: 1040px) {
+    .nav__menu {
+        display: none;
+    }
+}
+
+.nav__menu-item-link {
+    -webkit-align-items: center;
+    align-items: center;
+    color: #041f74;
+    display: -webkit-flex;
+    display: flex;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all .3s ease-in-out;
+}
