@@ -31,8 +31,12 @@
      <br> <br>
     {% if table_name == 'vragen' %}
         <p>Update de vragen hier:</p>
-        <form action="#" method="POST">
-            <p>vraag: <input type="text" name="text" value="{{ row[2] }}"></p> <br><br>
+        <form id="vraag" action="#" method="POST">
+            <label for="leerdoel">leerdoel: </label>
+            <input type="text" name="leerdoel" value="{{ row[1] }}"> <br><br>
+            <label for="vraag">vraag:</label>
+            <textarea name="" form="vraag" cols="30" rows="10">{{ row[2] }}</textarea> <br><br>
+            <label for="auteur">auteur: </label>
             <p>auteur: <input type="text" name="auteur" value="{{ row[3] }}"></p>
             <button type="submit">update</button>
         </form>
