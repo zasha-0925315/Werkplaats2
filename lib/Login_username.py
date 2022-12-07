@@ -1,3 +1,0 @@
-Login_usernames = [
-    "Jelle"
-]

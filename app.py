@@ -1,12 +1,11 @@
 import os.path
-import sys
 
 from flask import Flask, render_template, redirect, url_for, request
 
 from lib.tablemodel import DatabaseModel
 from lib.filters import filters
-from lib.Login_username import Login_usernames
-from lib.Login_password import Login_passwords
+
+from lib.Login_details import Login_details
 # This demo glues a random database and the Flask framework. If the database file does not exist,
 # a simple demo dataset will be created.
 LISTEN_ALL = "0.0.0.0"
@@ -38,13 +37,17 @@ def login_index():
 # Route for handling the login page logic
 @app.route('/', methods=['GET', 'POST'])
 def login():
-    error = None
+    Username = request.form.get('Username')
+    Password = request.form.get('Password')
     if request.method == 'POST':
-        if request.form['username'] not in Login_usernames or request.form['password'] not in Login_passwords:
-            error = 'Gebruikersnaam of wachtwoord is niet correct. Probeer het opnieuw'
+        data = Login_details
+        if Username in data:
+            if Password == data[Username]:
+                return redirect(url_for('index'))
+            else:
+                return redirect(url_for('login'))
         else:
-            return redirect(url_for('index'))
-    return render_template('login.html', error=error)
+            return redirect(url_for('login'))
 
 @app.route("/home")
 def index():

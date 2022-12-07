@@ -1,4 +1,0 @@
-Logins = [
-    "Benard",
-    "Jelle"
-]
