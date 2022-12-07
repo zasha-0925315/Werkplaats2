@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="/static/basic.css" type="text/css">
 </head>
 <body>
+{% include "header.html" %}
 <main>
-    <h1>Database onderzoek</h1>
-    <p>Alle tabellen in de database voor verder onderzoek <i>{{ database_file }}</i>:</p>
+    <h1>Selecteer Tabel</h1>
     <ul>
         {% for table in table_list %}
         <li><a href="/table_details/{{ table }}">{{ table }}</a></li>

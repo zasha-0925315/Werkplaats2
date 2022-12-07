@@ -1,5 +1,5 @@
 /* Basic.css  - https://vladocar.github.io/Basic.css/ */
-
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 * {box-sizing: border-box}
 
 :root{
@@ -14,13 +14,13 @@
 --rc: 8px;
 }
 
-@media (prefers-color-scheme: dark) {
-	:root {
-    --c2:#333;
-    --c3:#1e1f20;
-    --c4:#fff;
-	}
-}
+/*@media (prefers-color-scheme: dark) {*/
+/*	:root {*/
+/*    --c2:#333;*/
+/*    --c3:#1e1f20;*/
+/*    --c4:#fff;*/
+/*	}*/
+/*}*/
 
 html {
     -ms-text-size-adjust: 100%;
@@ -34,6 +34,7 @@ body {
     margin: 0;
     font: var(--sans);
     font-weight: 400;
+    font-family: 'Nunito', sans-serif;
     font-style: normal;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -97,7 +98,7 @@ section {display: flex; flex-flow: row wrap}
 
 /* Cards */
 
-article {background: var(--c2); border-radius: var(--rc); padding: 1em; box-shadow: 0px 1px 0px rgba(0,0,0,0.3)}
+article {background: var(--c2); border-radius: var(--rc); padding: 1em; box-shadow: 0 1px 0 rgba(0,0,0,0.3)}
 
 [style*="--c:"]:first-child, section>section:first-child, article:first-child {margin-left:0}
 [style*="--c:"]:last-child, section>section:last-child, article:last-child {margin-right:0}
@@ -134,4 +135,51 @@ section>section {
     body {font-size: 18px}
     main,footer {width: 98%}
     section,article {flex:none; width:100%; margin-left: 0;}
+}
+/* header */
+.container__large {
+    display: flex;
+    margin: 0 auto 20px auto;
+    max-width: 100vw;
+    box-shadow: 0 5px 10px black;
+    padding-left: 10%;
+}
+
+.nav__inner, .nav__left {
+    display: -webkit-flex;
+    display: flex;
+}
+
+.nav__inner {
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    min-height: 70px;
+}
+
+.nav__logo, .nav__menu {
+    display: -webkit-flex;
+    display: flex;
+}
+
+.nav__menu {
+    -webkit-align-items: center;
+    align-items: center;
+    list-style: none;
+    margin: 0 0 0 25px;
+    padding: 0;
+}
+
+.nav__menu-item-link {
+    -webkit-align-items: center;
+    align-items: center;
+    color: #041f74;
+    display: -webkit-flex;
+    display: flex;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all .3s ease-in-out;
+    margin: 0 10px;
 }
