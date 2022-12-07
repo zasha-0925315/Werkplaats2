@@ -48,7 +48,7 @@ def table_content(table_name=None):
         )
 
 
-@app.route("/table_details/update")
+@app.route("/table_details/<id>/update")
 def update():
         return render_template(
             "update.html"
