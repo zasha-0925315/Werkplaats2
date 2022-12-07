@@ -78,6 +78,7 @@ def table_filter(table_name=None):
                 data_type,
                 way
             )
+            print(data_type)
             return render_template(
                 "table_details.html",
                 rows=rows,
@@ -85,6 +86,7 @@ def table_filter(table_name=None):
                 table_name=table_name,
                 selected_column=selected_column
             )
+
         case "vragen":
             filter_name = ""
             if request.method == 'POST':

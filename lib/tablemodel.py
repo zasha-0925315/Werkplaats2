@@ -64,21 +64,16 @@ class DatabaseModel:
 
         convertable_value = []
         unconvertable_values = []
+        data_type_query = ""
 
         match data_type:
             case "string":
-                print(0)
+                cursor.execute(f"SELECT * FROM {table_name} "
+                               f"WHERE typeof({selected_column})!='real'")
             case "boolean":
-                print(1)
+                data_type_query = f"WHERE {selected_column} IS NOT '0' AND {selected_column} IS NOT '1'"
             case "int":
-                for data in data_type:
-                    result = isinstance(data, int)
-                    if result is True:
-                        convertable_value.append(data)
-                    else:
-                        unconvertable_values.append(data)
-                    print(convertable_value)
-                    print(unconvertable_values)
+                data_type_query = f"WHERE {selected_column} < 1900"
 
         match way:
             case "like":
@@ -92,7 +87,8 @@ class DatabaseModel:
                                f"WHERE {selected_column} BETWEEN {between_typed} AND {between_typed2}")
             case "wrong_data_type":
                 cursor.execute(f"SELECT * FROM {table_name} "
-                               f"WHERE {selected_column} LIKE '1$'")
+                               f"{data_type_query}")
+                print(data_type_query)
 
         # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
         table_headers = [column_name[0] for column_name in cursor.description]
