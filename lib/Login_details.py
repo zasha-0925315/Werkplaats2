@@ -1,4 +1,4 @@
-# Logins
+# list with usernames and corresponding passwords
 Login_details = {
     "Jelle": "Jelle1",
     "Zasha": "Zasha1",
