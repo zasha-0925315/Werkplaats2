@@ -62,8 +62,6 @@ class DatabaseModel:
     def get_table_search(self, table_name, selected_column, typed, between_typed, between_typed2, data_type, way):
         cursor = sqlite3.connect(self.database_file).cursor()
 
-        convertable_value = []
-        unconvertable_values = []
         data_type_query = ""
 
         match data_type:
