@@ -51,10 +51,12 @@ def login():
                 return redirect(url_for('index'))
             else:
                 # If the password is incorrect, return to the login page
-                return redirect(url_for('login'))
+                error = 'Gebruikersnaam of wachtwoord is incorrect'
+                return render_template('login.html', error=error)
         else:
             # If the username is incorrect, return to the login page
-            return redirect(url_for('login'))
+            error = 'Gebruikersnaam of wachtwoord is incorrect'
+            return render_template('login.html', error=error)
 
 
 # This is the main route that shows the index page
