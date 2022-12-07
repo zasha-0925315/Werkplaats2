@@ -24,22 +24,33 @@
      {% if table_name == 'leerdoelen' %}
          <p>Update de leerdoelen hier:</p>
         <form action="#" method="POST">
-            <p>leerdoel: <input type="text" name="leerdoel" value="{{ row[1] }}"></p> <br><br>
+          <label for="leerdoel">leerdoel: </label>
+            <input type="text" name="leerdoel" value="{{ row[1] }}">
             <button type="submit">update</button>
         </form>
     {% endif %}
      <br> <br>
     {% if table_name == 'vragen' %}
         <p>Update de vragen hier:</p>
-        <form id="vraag" action="#" method="POST">
+        <div>
+         <form id="vraag" action="#" method="POST">
+          <div>
             <label for="leerdoel">leerdoel: </label>
-            <input type="text" name="leerdoel" value="{{ row[1] }}"> <br><br>
+            <input type="text" name="leerdoel" value="{{ row[1] }}">
+          </div>
+        <div>
             <label for="vraag">vraag:</label>
-            <textarea name="" form="vraag" cols="30" rows="10">{{ row[2] }}</textarea> <br><br>
+            <textarea name="" form="vraag" cols="30" rows="10">{{ row[2] }}</textarea>
+        </div>
+        <div>
             <label for="auteur">auteur: </label>
-            <p>auteur: <input type="text" name="auteur" value="{{ row[3] }}"></p>
+            <input type="text" name="auteur" value="{{ row[3] }}">
+        </div>
+        <div>
             <button type="submit">update</button>
+        </div>
         </form>
+        </div>
     {% endif %}
 
 
