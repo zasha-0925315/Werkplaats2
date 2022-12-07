@@ -62,6 +62,14 @@ def update(table_name, id):
         "update.html", table_name=table_name, row=row
     )
 
+@app.route("/table_details/<table_name>/<id>/delete", methods =['GET', 'DELETE'])
+def delete(table_name, id):
+    row, column_names = dbm.get_data(table_name, id)
+    print(row)
+
+    return render_template(
+        "delete.html", table_name=table_name, row=row
+    )
 
 
 if __name__ == "__main__":
