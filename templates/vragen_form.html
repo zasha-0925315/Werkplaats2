@@ -2,12 +2,12 @@
     <form method="post">
         <label for="filter_name">Zoek naar:</label>
         <select id="filter_name" name="filter_name">
-            <option value="no_filter" {% if filter_name == "no_filter" %}selected{% endif %}>Geen filter</option>
-            <option value="wrong_leerdoelen" {% if filter_name == "wrong_leerdoelen" %}selected{% endif %}>Niet bestaande leerdoelen</option>
-            <option value="wrong_auteurs" {% if filter_name == "wrong_auteurs" %}selected{% endif %}>Niet bestaande auteurs</option>
-            <option value="html_system_codes" {% if filter_name == "html_system_codes" %}selected{% endif %}>Html systeem codes</option>
-            <option value="empty_rows" {% if filter_name == "empty_rows" %}selected{% endif %}>Lege rijen</option>
-            <option value="full_rows" {% if filter_name == "full_rows" %}selected{% endif %}>Niet lege rijen</option>
+            <option value="no_filter">Geen filter</option>
+            <option value="wrong_leerdoelen">Niet bestaande leerdoelen</option>
+            <option value="wrong_auteurs">Niet bestaande auteurs</option>
+            <option value="html_system_codes">Html systeem codes</option>
+            <option value="empty_rows">Lege rijen</option>
+            <option value="full_rows">Niet lege rijen</option>
         </select>
         <div>
             <button type="submit">Filter</button>
