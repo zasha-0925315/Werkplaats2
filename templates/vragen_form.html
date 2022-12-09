@@ -1,4 +1,4 @@
-<div>
+<div class="form_box">
     <form method="post">
         <label for="filter_name">Zoek naar:</label>
         <select id="filter_name" name="filter_name">
@@ -9,6 +9,8 @@
             <option value="empty_rows" {% if filter_name == "empty_rows" %}selected{% endif %}>Lege rijen</option>
             <option value="full_rows" {% if filter_name == "full_rows" %}selected{% endif %}>Niet lege rijen</option>
         </select>
-        <button type="submit">Filter</button>
+        <div>
+            <button type="submit">Filter</button>
+        </div>
     </form>
 </div>
