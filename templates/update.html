@@ -12,46 +12,52 @@
 
 
      {% if table_name == 'auteurs' %}
-         <p>Update de auteur hier:</p>
-        <form action="#" method="POST">
 
-            <p>voornaam: <input type="text" name="voornaam" value="{{ row[1] }}"></p>
-            <p>achternaam: <input type="text" name="achternaam" value="{{ row[2] }}"></p>
+         <p>Update de auteur hier:</p>
+         <div class="form">
+         <form action="#" method="POST">
+           <label for="voornaam">voornaam:</label>
+            <input type="text" name="voornaam" value="{{ row[1] }}">
+            <input type="text" name="achternaam" value="{{ row[2] }}"></p>
             <p>medewerker: <input type="checkbox"  {% if row[4] %} checked{% endif %} name="medewerker" ></p>
             <label for="geboortejaar">Geboortejaar: </label>
             <input type="text" >
             <button type="submit">update</button>
-        </form>
+         </form>
+         </div>
      {% endif %}
 
      {% if table_name == 'leerdoelen' %}
          <p>Update de leerdoelen hier:</p>
+         <div class="form">
         <form action="#" method="POST">
           <label for="leerdoel">leerdoel: </label>
             <input type="text" name="leerdoel" value="{{ row[1] }}">
             <button type="submit">update</button>
         </form>
+        </div>
     {% endif %}
-     <br> <br>
+
+
     {% if table_name == 'vragen' %}
         <p>Update de vragen hier:</p>
-        <div>
+        <div class="form">
          <form id="vraag" action="#" method="POST">
           <div>
             <label for="leerdoel">leerdoel: </label>
             <input type="text" name="leerdoel" value="{{ row[1] }}">
           </div>
-        <div>
+          <div>
             <label for="vraag">vraag:</label>
             <textarea name="" form="vraag" cols="30" rows="10">{{ row[2] }}</textarea>
-        </div>
-        <div>
+          </div>
+          <div>
             <label for="auteur">auteur: </label>
             <input type="text" name="auteur" value="{{ row[3] }}">
-        </div>
-        <div>
+          </div>
+          <div>
             <button type="submit">update</button>
-        </div>
+          </div>
         </form>
         </div>
     {% endif %}
