@@ -14,24 +14,26 @@
      {% if table_name == 'auteurs' %}
 
          <p>Update de auteur hier:</p>
-         <div class="form">
-         <form action="#" method="POST">
+         <div class="formclass">
+          <form action="#" method="POST">
            <label for="voornaam">voornaam:</label>
-            <input type="text" name="voornaam" value="{{ row[1] }}">
-            <input type="text" name="achternaam" value="{{ row[2] }}"></p>
-            <p>medewerker: <input type="checkbox"  {% if row[4] %} checked{% endif %} name="medewerker" ></p>
-            <label for="geboortejaar">Geboortejaar: </label>
-            <input type="text" >
+             <input type="text" name="voornaam" value="{{ row[1] }}">
+              <label for="achternaam: ">achternaam:</label>
+             <input type="text" name="achternaam" value="{{ row[2] }}">
+             <label for="geboortejaar">Geboortejaar:</label>
+             <input type="text" name="geboortejaar" value="{{ row[3] }}">
+             <label for="medewerker">Medewerker: </label>
+             <input type="checkbox" {% if row[4] %} checked{% endif %} name="medewerker">
             <button type="submit">update</button>
-         </form>
+          </form>
          </div>
      {% endif %}
 
      {% if table_name == 'leerdoelen' %}
          <p>Update de leerdoelen hier:</p>
-         <div class="form">
+         <div class="formclass">
         <form action="#" method="POST">
-          <label for="leerdoel">leerdoel: </label>
+          <label for="leerdoel">leerdoel:</label>
             <input type="text" name="leerdoel" value="{{ row[1] }}">
             <button type="submit">update</button>
         </form>
@@ -41,10 +43,10 @@
 
     {% if table_name == 'vragen' %}
         <p>Update de vragen hier:</p>
-        <div class="form">
-         <form id="vraag" action="#" method="POST">
+        <div class="formclass">
+         <form action="#" method="POST">
           <div>
-            <label for="leerdoel">leerdoel: </label>
+            <label for="leerdoel">leerdoel:</label>
             <input type="text" name="leerdoel" value="{{ row[1] }}">
           </div>
           <div>
