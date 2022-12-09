@@ -134,3 +134,40 @@ section>section {
     main,footer {width: 98%}
     section,article {flex:none; width:100%; margin-left: 0;}
 }
+
+ div {
+  margin: auto;
+  width: 50%;
+  padding: 20px;
+}
+
+form {
+  text-align: center;
+}
+
+body {
+  background-color: #F7F7F7;
+    text-align: center;
+}
+
+input[type=submit] {
+  background-color: #004df5;
+  padding: 12px 20px;
+  cursor: pointer;
+}
+
+input[type=text],[type=password] {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid darkgray;
+  border-radius: 4px;
+}
+img {
+  display: block;
+    margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}

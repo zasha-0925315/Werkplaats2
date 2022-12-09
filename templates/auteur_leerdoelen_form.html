@@ -1,5 +1,6 @@
 <div>
     <span>Zoek in deze tabel naar:</span>
+    <br><br>
     <form method="post">
         <div>
             <label for="column_select">Welke kolom:</label>
@@ -9,6 +10,7 @@
                 {% endfor %}
             </select>
         </div>
+    <br>
         <div>
             <label for="way">zoek manier</label>
             <select id="way" name="way">
@@ -18,6 +20,7 @@
                 <option value="wrong_data_type">verkeerde datatype</option>
             </select>
         </div>
+    <br>
         <div id="like_input">
             <label for="typed">Waarde</label>
             <input id="typed" type="text" name="typed">
@@ -35,6 +38,7 @@
                 <option value="date_1900">gebortejaar onder 1900 jaar</option>
             </select>
         </div>
+    <br>
         <div>
             <button type="submit">Search</button>
         </div>
