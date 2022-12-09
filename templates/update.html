@@ -10,6 +10,7 @@
      <h1>Update page</h1>
         <p>Dit is de update page</p>
 
+     <!-- Table name auteurs is getting called when you select the table name -->
      {% if table_name == 'auteurs' %}
          <p>Update de auteur hier:</p>
          <div class="formclass">
@@ -27,6 +28,7 @@
          </div>
      {% endif %}
 
+     <!-- Table 'leerdoelen' is getting called when you select the table name -->
      {% if table_name == 'leerdoelen' %}
          <p>Update de leerdoelen hier:</p>
          <div class="formclass">
@@ -38,7 +40,7 @@
         </div>
     {% endif %}
 
-
+        <!-- table name 'vragen' is getting called in here when you select the table -->
     {% if table_name == 'vragen' %}
         <p>Update de vragen hier:</p>
         <div class="formclass">
