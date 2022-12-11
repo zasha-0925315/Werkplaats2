@@ -42,9 +42,7 @@ body {
 }
 img, iframe {border: none; max-width: 100%}
 
-a {color: var(--c1);  text-decoration:none}
-
-a:hover {color: var(--c1); text-decoration: underline}
+a:hover {color: #000; text-decoration: underline}
 
 pre {font: 1em/1.6 var(--mono); background: var(--c2); padding: 1em; overflow: auto}
 
@@ -124,7 +122,7 @@ section>section {
     section,article {flex:none; width:100%; margin-left: 0;}
 }
 
-.knop1{
+a {
     color: #fff;
-
+    text-decoration: none;
 }
