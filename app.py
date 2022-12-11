@@ -54,5 +54,11 @@ def update(id):
             "update.html"
         )
 
+@app.route("/table_details/<id>/update")
+def terug(id):
+        return render_template(
+            "update.html"
+        )
+
 if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)
