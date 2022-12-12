@@ -23,7 +23,7 @@
              <label for="geboortejaar">Geboortejaar:</label>
              <input type="text" name="geboortejaar" value="{{ row[3] }}">
           </div>
-          <div>
+          <div id="boxcheck">
              <label for="medewerker">Medewerker: </label>
              <input type="checkbox" {% if row[4] %} checked{% endif %} name="medewerker">
           </div>
@@ -59,7 +59,7 @@
             <label for="leerdoel">leerdoel:</label>
             <input type="text" name="leerdoel" value="{{ row[1] }}">
           </div>
-          <div class="areatext">
+          <div id="areatext">
             <label for="vraag">vraag:</label>
             <textarea name="" form="vraag" cols="30" rows="10">{{ row[2] }}</textarea>
           </div>
