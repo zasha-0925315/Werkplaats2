@@ -6,29 +6,29 @@ const data_type_input = document.getElementById('data_type_input')
 way.onchange = function () {
   switch (way.value){
     case 'like':
-      like_input.style.display = "block";
+      like_input.style.display = "flex";
       between_input.style.display = "none";
       data_type_input.style.display = "none";
 
       break;
     case 'is_not':
-      like_input.style.display = "block";
+      like_input.style.display = "flex";
       between_input.style.display = "none";
       data_type_input.style.display = "none";
       break;
     case 'between':
       like_input.style.display = "none";
-      between_input.style.display = "block";
+      between_input.style.display = "flex";
       data_type_input.style.display = "none";
       break;
     case 'wrong_data_type':
       like_input.style.display = "none";
       between_input.style.display = "none";
-      data_type_input.style.display = "block";
+      data_type_input.style.display = "flex";
       break;
     default:
-      like_input.style.display = "block";
-      between_input.style.display = "block";
-      data_type_input.style.display = "block";
+      like_input.style.display = "flex";
+      between_input.style.display = "none";
+      data_type_input.style.display = "none";
   }
 }
