@@ -28,7 +28,7 @@ def login_index():
 
 
 # Route that handles the login form
-@app.route('/', methods=['GET', 'POST'])
+@app.route("/login", methods=['GET', 'POST'])
 def login():
     # Check if the form was submitted
     Username = request.form.get('Username')
@@ -70,7 +70,8 @@ def table_content(table_name=None):
             "table_details.html", rows=rows, columns=column_names, table_name=table_name
         )
 
-@app.route("/table_details/<table_name>/<id>/update", methods =['GET', 'POST'])
+
+@app.route("/table_details/<table_name>/<id>/update", methods=['GET', 'POST'])
 def update(table_name, id):
     # match table_name:
     #     case "auteurs":
@@ -85,7 +86,8 @@ def update(table_name, id):
         "update.html", table_name=table_name, row=row
     )
 
-@app.route("/table_details/<table_name>/<id>/delete", methods =['GET', 'DELETE'])
+
+@app.route("/table_details/<table_name>/<id>/delete", methods=['GET', 'DELETE'])
 def delete(table_name, id):
     row, column_names = dbm.get_data(table_name, id)
     print(row)
@@ -93,7 +95,6 @@ def delete(table_name, id):
     return render_template(
         "delete.html", table_name=table_name, row=row
     )
-
 
 
 @app.route("/table_details/<table_name>", methods=("POST", "GET"))
