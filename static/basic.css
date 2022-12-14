@@ -134,11 +134,16 @@ section>section {
 }
 
 #like_input {
-    display: block;
+    display: flex;
 }
 
 #between_input {
     display: none;
+    align-items: center;
+}
+
+#between_input div {
+    flex-direction: row;
 }
 
 #data_type_input {
@@ -215,14 +220,9 @@ section>section {
     flex-direction: column;
 }
 
-#between_input {
-    display: flex;
-    align-items: center;
-}
 
-#between_input div {
-    flex-direction: row;
-}
+
+
 
 a {
     color: #000;
