@@ -92,7 +92,7 @@ class DatabaseModel:
         # Note that this method returns 2 variables!
         return table_content, table_headers
 
-    def update(self, table_name):
+    def update(self):
         cursor = sqlite3.connect(self.database_file).cursor()
         cursor.execute("UPDATE vragen SET vraag='' WHERE id=''")
 
