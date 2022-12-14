@@ -9,36 +9,37 @@
     <link rel="stylesheet" href="/static/basic.css" type="text/css">
 </head>
 <body>
-
+{% include "header.html" %}
 <main>
-    {% if table_name == 'vragen' %}
-        {% include "vragen_form.html" %}
-    {% endif %}
+    <div>
+        {% if table_name == 'vragen' %}
+            {% include "vragen_form.html" %}
+        {% endif %}
 
-    {% if table_name == 'leerdoelen' or table_name == 'auteurs' %}
-        {% include "auteur_leerdoelen_form.html" %}
-    {% endif %}
-
-
-    <table>
-        <thead>
-        <tr>
-            {% for column in columns %}
-            <th>{{ column }}</th>
-            {% endfor %}
-        </tr>
-        </thead>
-        <tbody>
-        {% for row in rows %}
-        <tr>
-            {% for field in row %}
-                <td>{{ field }}</td>
-            {% endfor %}
-        </tr>
-        {% endfor %}
-        </tbody>
-
-    </table>
+        {% if table_name == 'leerdoelen' or table_name == 'auteurs' %}
+            {% include "auteur_leerdoelen_form.html" %}
+        {% endif %}
+    </div>
+    <div id="table_box">
+        <table>
+            <thead>
+                <tr>
+                    {% for column in columns %}
+                        <th>{{ column }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                    <tr>
+                        {% for field in row %}
+                            <td>{{ field }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </main>
 <script src="../static/dynamic_filter.js"></script>
 </body>
