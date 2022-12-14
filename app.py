@@ -1,12 +1,11 @@
 import os.path
 
-from flask import Flask, render_template, request, url_for, flash, redirect
+from flask import Flask, render_template, request, url_for, redirect
 
 from lib.tablemodel import DatabaseModel
-
 from lib.Login_details import Login_details
-# This demo glues a random database and the Flask framework. If the database file does not exist,
-# a simple demo dataset will be created.
+
+# Create the application.
 LISTEN_ALL = "0.0.0.0"
 FLASK_IP = LISTEN_ALL
 FLASK_PORT = 81
@@ -16,24 +15,16 @@ app = Flask(__name__)
 # This command creates the "<application directory>/databases/testcorrect_vragen.db" path
 DATABASE_FILE = os.path.join(app.root_path, 'databases', 'testcorrect_vragen.db')
 
-# Check if the database file exists. If not, create a demo database
+# Check if the database file exists.
 if not os.path.isfile(DATABASE_FILE):
     print(f"Could not find database {DATABASE_FILE}, creating a demo database.")
 dbm = DatabaseModel(DATABASE_FILE)
-
-# Main route that shows a list of tables in the database
-# Note the "@app.route" decorator. This might be a new concept for you.
-# It is a way to "decorate" a function with additional functionality. You
-# can safely ignore this for now - or look into it as it is a really powerful
-# concept in Python.
 
 
 # This is the main route that shows the login page
 @app.route("/")
 def login_index():
-    return render_template(
-        "login.html"
-    )
+    return render_template('login.html')
 
 
 # Route that handles the login form
