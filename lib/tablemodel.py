@@ -94,7 +94,7 @@ class DatabaseModel:
 
     def update(self):
         cursor = sqlite3.connect(self.database_file).cursor()
-        cursor.execute("UPDATE vragen SET vraag='' WHERE id=''")
+        cursor.execute("UPDATE vragen SET vraag='{vraag.leerdoel}' WHERE id='{vraag.id}'")
 
         # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
         table_headers = [column_name[0] for column_name in cursor.description]
