@@ -34,10 +34,10 @@
                     <tr>
                         {% for field in row %}
                             <td>{{ field }}</td>
+                            <td><button class="knop1"><a href="{{ loop.index }}/update">Wijzig</a></button></td>
                         {% endfor %}
                     </tr>
                 {% endfor %}
-                <td><button class="knop1"><a href="{{ loop.index }}/update">Wijzig</a></button></td>
             </tbody>
         </table>
     </div>
