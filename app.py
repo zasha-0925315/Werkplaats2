@@ -33,6 +33,7 @@ def login_index():
         return redirect(url_for('index'))
     else:
         return render_template('login.html')
+        session.pop('logged_in', None)
 
 
 # Route that handles the login form
@@ -66,6 +67,11 @@ def index():
     return render_template(
         "tables.html", table_list=tables, database_file=DATABASE_FILE
     )
+
+@app.route("/logout")
+def logout():
+    session.pop('logged_in', None)
+    return redirect('/')
 
 
 # The table route displays the content of a table

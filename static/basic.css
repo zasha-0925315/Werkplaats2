@@ -190,6 +190,12 @@ section>section {
     padding: 0;
 }
 
+.nav__right {
+    position: absolute;
+    top: 10px;
+    right: 200px;
+}
+
 .nav__menu-item-link {
     -webkit-align-items: center;
     align-items: center;
@@ -220,11 +226,8 @@ section>section {
     flex-direction: column;
 }
 
-
-
-
-
 a {
     color: #000;
     text-decoration: none;
 }
+

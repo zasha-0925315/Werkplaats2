@@ -1,9 +1,12 @@
+<!DOCTYPE html>
+<style>
+</style>
 <header>
     <div class="container__large">
         <div class="nav__inner">
             <div class="nav__left">
                 <a href="/home" class="nav__logo">
-                    <img src="https://www.test-correct.nl/hubfs/raw_assets/public/test-correct/images/testcorrect-logo.svg" class="nav__logo-large">
+                    <img src="https://www.test-correct.nl/hubfs/raw_assets/public/test-correct/images/testcorrect-logo.svg" class="nav__logo-large" alt="Home_image">
                 </a>
 
                 <ul class="nav__menu">
@@ -14,6 +17,9 @@
                         </a>
                     </li>
                     {% endfor %}
+                    <div class="nav__right">
+                        <input class="button" type="submit" name="logout_button" value="Uitloggen" onclick="window.location = 'http://127.0.0.1:81/logout'">
+                    </div>
                 </ul>
             </div>
         </div>
