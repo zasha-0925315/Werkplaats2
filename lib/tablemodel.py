@@ -33,9 +33,6 @@ class DatabaseModel:
         cursor = sqlite3.connect(self.database_file).cursor()
 
         match filter_name:
-
-            case "no_filter":
-                cursor.execute(f"SELECT * FROM {table_name}")
             case "wrong_leerdoelen":
                 cursor.execute(f"SELECT * FROM {table_name} "
                                f"WHERE leerdoel NOT IN (SELECT id FROM leerdoelen)")

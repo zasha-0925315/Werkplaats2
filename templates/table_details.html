@@ -12,6 +12,7 @@
 {% include "header.html" %}
 <main>
     <div>
+        <h2>Zoek naar:</h2>
         {% if table_name == 'vragen' %}
             {% include "vragen_form.html" %}
         {% endif %}
@@ -35,7 +36,7 @@
                         {% for field in row %}
                             <td>{{ field }}</td>
                         {% endfor %}
-                    <td><button class="knop1"><a href="{{ table_name }}/{{ loop.index }}/update">Wijzig</a></button></td>
+                    <td><button class="button1"><a href="{{ table_name }}/{{ loop.index }}/update">Wijzig</a></button></td>
                     </tr>
                 {% endfor %}
             </tbody>
