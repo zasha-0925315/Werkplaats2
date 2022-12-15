@@ -12,6 +12,10 @@
 --c5:#fff;
 --c6:rgba(240, 242, 245, 1);
 --c7:#ddd;
+--c8:#3ab753;
+--textcolor:#041f74;
+--inba:##f9faff;
+--inbr:#c3d0ed;
 --m1: 8px;
 --rc: 8px;
 --rc2: 20px
@@ -44,7 +48,7 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     background-color: var(--c6);
-    color: var(--c4);
+    color: var(--textcolor);
 }
 img, iframe {border: none; max-width: 100%}
 
@@ -66,7 +70,7 @@ h1,h2,h3,h4,h5,h6 {margin: 0.6em 0; font-weight: normal}
 
 h1 {font-size: 2.625em; line-height: 1.2}
 
-h2 {font-size: 1.625em; line-height: 1.2}
+h2 {font-size: 1.625em; line-height: 1.2; font-weight: bold}
 
 h3 {font-size: 1.3125em; line-height: 1.24}
 
@@ -146,6 +150,11 @@ tbody tr td:last-child{
     flex-direction: column;
 }
 
+#form_box input, #form_box select {
+    background-color: var(--inba);
+    border: 2px solid var(--inbr);
+}
+
 #like_input {
     display: flex;
 }
@@ -160,6 +169,15 @@ tbody tr td:last-child{
 
 #data_type_input {
     display: none;
+}
+
+/* table buttons*/
+.button1 {
+    background-color: var(--c8);
+}
+
+.button2 {
+    background-color: var(--c1);
 }
 
 /* Rounded Corners*/
