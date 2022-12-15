@@ -1,15 +1,14 @@
-<div class="form_box">
+<div id="form_box">
     <form method="post">
-        <label for="filter_name">Zoek naar:</label>
+        <label for="filter_name"></label>
         <select id="filter_name" name="filter_name">
-            <option value="no_filter">Geen filter</option>
             <option value="wrong_leerdoelen">Niet bestaande leerdoelen</option>
             <option value="wrong_auteurs">Niet bestaande auteurs</option>
             <option value="html_system_codes">Html systeem codes</option>
             <option value="empty_rows">Lege rijen</option>
             <option value="full_rows">Niet lege rijen</option>
         </select>
-        <button type="submit">Filter</button>
+        <button type="submit" class="button1">Filter</button>
     </form>
-    <a href="/table_details/{{ table_name }}"><button>Reset</button></a>
+    <a href="/table_details/{{ table_name }}"><button class="button2">Reset</button></a>
 </div>
