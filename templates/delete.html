@@ -1,22 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Delete</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/static/basic.css" type="text/css">
+    <title>Update</title>
 </head>
 <body>
 
+<h1>Delete pagina</h1>
+<p>Dit is de delete pagina</p>
 
-    <h1>Delete pagina</h1>
+<!-- Table name auteurs is getting called when you select the table name -->
+{% if table_name == 'auteurs' %}
+    <p>Verwijder de auteur hier:</p>
+    <div class="formclass">
+        <form action="#" method="POST">
+            <div>
+                <label for="voornaam">voornaam:</label>
+                <input id="voornaam" type="text" name="voornaam" value="{{ row[1] }}">
+            </div>
+            <div>
+                <label for="achternaam">achternaam:</label>
+                <input id="achternaam" type="text" name="achternaam" value="{{ row[2] }}">
+            </div>
+            <div>
+                <label for="geboortejaar">Geboortejaar:</label>
+                <input id="geboortejaar" type="text" name="geboortejaar" value="{{ row[3] }}">
+            </div>
+            <div id="boxcheck">
+                <label for="medewerker">Medewerker: </label>
+                <input id="medewerker" type="checkbox" {% if row[4] %} checked{% endif %} name="medewerker">
+            </div>
+            <div class="buttonupdate">
+                <button type="submit">Verwijder</button>
+            </div>
 
-    <p>Hier kunt u een rij verwijderen</p>
-    <form class="delete" action="#" method="post">
-        <p>klik op ja om het te bevestigen!</p>
-        <input type="submit" value="ja">
-        <p>klik op nee om terug te keren naar de database</p>
-        <a href="#">Nee</a>
+        </form>
+    </div>
+    <form action="delete.html">
+        <button type="submit">Delete</button>
     </form>
+{% endif %}
 
+<!-- Table 'leerdoelen' is getting called when you select the table name -->
+{% if table_name == 'leerdoelen' %}
+    <p>Verwijder de leerdoelen hier:</p>
+    <div class="formclass">
+        <form action="#" method="POST">
+            <div>
+                <label for="leerdoel">leerdoel:</label>
+                <input id="leerdoel" type="text" name="leerdoel" value="{{ row[1] }}">
+            </div>
+            <div class="buttonupdate">
+                <button type="submit">update</button>
+            </div>
+        <div>
+            <form action="delete.html">
+        <button type="submit">Delete</button>
+    </form>
+        </div>
+    </form>
+        </form>
+    </div>
+{% endif %}
+
+<!-- table name 'vragen' is getting called in here when you select the table -->
+{% if table_name == 'vragen' %}
+    <p>Verwijder de vragen hier:</p>
+    <div class="formclass">
+        <form action="#" method="POST">
+            <div>
+                <label for="leerdoel">leerdoel:</label>
+                <input id="leerdoel" type="text" name="leerdoel" value="{{ row[1] }}">
+            </div>
+            <div id="areatext">
+                <label for="vraag">vraag:</label>
+                <textarea id="vraag" name="" form="vraag" cols="30" rows="10">{{ row[2] }}</textarea>
+            </div>
+            <div>
+                <label for="auteur">auteur: </label>
+                <input id="auteur" type="text" name="auteur" value="{{ row[3] }}">
+            </div>
+            <div class="buttonupdate">
+                <button type="submit">Verwijder</button>
+            </div>
+        </form>
+    </div>
+{% endif %}
 
 
 </body>
