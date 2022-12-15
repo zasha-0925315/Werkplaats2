@@ -1,8 +1,7 @@
 <div>
-    <span>Zoek in deze tabel naar:</span>
-    <div>
+    <div id="form_box">
         <form method="post">
-            <div class="form_box">
+            <div class="form_list">
             <div>
                 <label for="column_select">Welke kolom:</label>
                 <select id="column_select" name="column_select">
@@ -17,7 +16,7 @@
                     <option value="like">bevat</option>
                     <option value="is_not">is niet gelijk aan</option>
                     <option value="between">tussen</option>
-                    <option value="wrong_data_type">verkeerde datatype</option>
+                    <option value="wrong_data_type">foute data</option>
                 </select>
             </div>
             <div id="filter_amount">
@@ -36,7 +35,7 @@
             <div id="data_type_input">
                 <label for="data_type">data type:</label>
                 <select id="data_type" name="data_type">
-                    <option value="boolean">boolean</option>
+                    <option value="boolean">geen 0 of 1</option>
                     <option value="date_1900">gebortejaar onder 1900 jaar</option>
                 </select>
             </div>
