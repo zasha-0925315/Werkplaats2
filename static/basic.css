@@ -121,6 +121,7 @@ tbody tr td:last-child{
 
 #table_box, #form_box{
     width: 100%;
+    min-width: fit-content;
     padding: 10px 30px;
     margin-top: 20px;
     background-color: var(--c5);
@@ -140,6 +141,13 @@ tbody tr td:last-child{
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
+}
+
+@media (max-width: 1080px) {
+    .form_list {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 
 .form_list div {
