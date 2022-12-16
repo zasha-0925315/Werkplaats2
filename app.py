@@ -34,7 +34,7 @@ def login_index():
     if "user" in session:
         return redirect(url_for('index'))
     else:
-        session.pop('user', None)
+        session.pop('logged_in', None)
         return render_template('login.html')
 
 
