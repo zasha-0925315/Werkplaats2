@@ -321,7 +321,10 @@ a {
 }
 
 /* update form */
-.container_update {
+
+
+
+.container_update, #voornaam, #achternaam, #geboortejaar, #medewerker, #leerdoel, #areatext, #vraag, #auteur {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -359,6 +362,13 @@ a {
     background-color: var(--c1);
 }
 
-input # {
-    width: 100%;
+input [type="text"] {
+    width: 85%;
+    height: 40px;
+    background-color: #f9faff;
+    box-sizing: border-box;
+    border: 2px solid #c3d0ed;
+    border-radius: 8px;
+    margin-top: -5px;
+    margin-bottom: 5px;
 }
