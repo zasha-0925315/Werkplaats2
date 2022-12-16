@@ -17,20 +17,24 @@
      <div class="update_form">
         <form action="#" method="POST">
             <div>
-                <label for="voornaam">voornaam:</label>
+                <label for="voornaam">voornaam:
                 <input id="voornaam" type="text" name="voornaam" value="{{ row[1] }}">
+                </label>
             </div>
             <div>
-                <label for="achternaam">achternaam:</label>
+                <label for="achternaam">achternaam:
                 <input id="achternaam" type="text" name="achternaam" value="{{ row[2] }}">
+                </label>
             </div>
             <div>
-                <label for="geboortejaar">Geboortejaar:</label>
+                <label for="geboortejaar">Geboortejaar:
                 <input id="geboortejaar" type="text" name="geboortejaar" value="{{ row[3] }}">
+                </label>
             </div>
             <div id="boxcheck">
-                <label for="medewerker">Medewerker: </label>
+                <label for="medewerker">Medewerker:
                 <input id="medewerker" type="checkbox" {% if row[4] %} checked{% endif %} name="medewerker">
+                </label>
             </div>
             <div>
                 <button id="update_button" type="submit">update</button>
@@ -50,10 +54,11 @@
     <div class="container_update">
         <form action="#" method="POST">
             <div>
-                <label for="leerdoel">leerdoel:</label>
+                <label for="leerdoel">leerdoel:
                 <input id="leerdoel" type="text" name="leerdoel" value="{{ row[1] }}">
+                </label>
             </div>
-            <div >
+            <div>
                 <button id="update_button" type="submit">update</button>
             </div>
         <div>
@@ -71,16 +76,19 @@
     <div class="container_update">
         <form action="#" method="POST">
             <div>
-                <label for="leerdoel">leerdoel:</label>
+                <label for="leerdoel">leerdoel:
                 <input id="leerdoel" type="text" name="leerdoel" value="{{ row[1] }}">
-            </div>
-            <div id="areatext">
-                <label for="vraag">vraag:</label>
-                <textarea id="vraag" name="" form="vraag" cols="30" rows="10">{{ row[2] }}</textarea>
+                </label>
             </div>
             <div>
-                <label for="auteur">auteur: </label>
+                <label for="vraag">vraag:
+                <textarea id="vraag" name="" form="vraag" cols="30" rows="10">{{ row[2] }}</textarea>
+                </label>
+            </div>
+            <div>
+                <label for="auteur">auteur:
                 <input id="auteur" type="text" name="auteur" value="{{ row[3] }}">
+                </label>
             </div>
             <div>
                 <button id="update_button" type="submit">update</button>
@@ -89,7 +97,6 @@
         <button type="submit">Delete</button>
     </form>
         </form>
-    <a href="/table_details/{{ table_name }}"><button class="button2">Terug naar lijst</button></a>
     </div>
 {% endif %}
 <a href="/table_details/{{ table_name }}"><button class="button2">Terug naar lijst</button></a>
