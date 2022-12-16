@@ -21,10 +21,12 @@ if not os.path.isfile(DATABASE_FILE):
     print(f"Could not find database {DATABASE_FILE}, creating a demo database.")
 dbm = DatabaseModel(DATABASE_FILE)
 
+
 @app.before_request
 def before_request():
     if "logged_in" not in session and request.endpoint not in ['login', 'static', 'login_index']:
         return redirect(url_for('login_index'))
+
 
 # This is the main route that shows the login page
 @app.route("/")
@@ -32,8 +34,8 @@ def login_index():
     if "logged_in" in session:
         return redirect(url_for('index'))
     else:
-        return render_template('login.html')
         session.pop('logged_in', None)
+        return render_template('login.html')
 
 
 # Route that handles the login form
@@ -67,6 +69,7 @@ def index():
     return render_template(
         "tables.html", table_list=tables, database_file=DATABASE_FILE
     )
+
 
 @app.route("/logout")
 def logout():
