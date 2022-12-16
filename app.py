@@ -51,8 +51,7 @@ def login():
             if Password == data[Username]:
                 # If the username and password are correct, redirect to the main page
                 session['user'] = Username
-                tables = dbm.get_table_list()
-                return redirect(url_for('index', Username=Username, table_list=tables, database_file=DATABASE_FILE))
+                return redirect(url_for('index'))
             else:
                 # If the password is incorrect, return to the login page
                 error = 'Gebruikersnaam of wachtwoord is incorrect'
