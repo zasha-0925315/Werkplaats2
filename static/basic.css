@@ -327,3 +327,21 @@ a {
     align-items: center;
     justify-content: center;
 }
+
+.buttonupdate {
+    background-color: var(--c1);
+    color: var(--c5);
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: var(--rc);
+}
+
+.button2 {
+    background-color: var(--c1);
+}
