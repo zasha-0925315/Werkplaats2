@@ -12,6 +12,7 @@
  <div class="container">
       <div class="login">
           <h1>Inloggen</h1>
+      {% block content %}
       <form action='/login' method="post">
       <h3>Gebruikersnaam</h3>
           <label>
@@ -26,6 +27,7 @@
       {% endif %}
         <input class="btn btn-default" type="submit" value="Login">
       </form>
+      {% endblock %}
       </div>
  </div>
 </body>
