@@ -72,7 +72,6 @@ def index():
     )
 
 
-
 @app.route("/logout")
 def logout():
     session.pop('logged_in', None)
@@ -93,14 +92,7 @@ def table_content(table_name=None):
 
 @app.route("/table_details/<table_name>/<id>/update", methods=['GET', 'POST'])
 def update(table_name, id):
-    # match table_name:
-    #     case "auteurs":
-    #
-    #     case "leerdoelen":
-    #
-    #     case "vragen":
     row, column_names = dbm.get_data(table_name, id)
-    print(row)
 
     return render_template(
         "update.html", table_name=table_name, row=row
@@ -110,7 +102,6 @@ def update(table_name, id):
 @app.route("/table_details/<table_name>/<id>/delete", methods=['GET', 'DELETE'])
 def delete(table_name, id):
     row, column_names = dbm.get_data(table_name, id)
-    print(row)
 
     return render_template(
         "delete.html", table_name=table_name, row=row
@@ -145,7 +136,6 @@ def table_filter(table_name=None):
                 data_type,
                 way
             )
-            print(data_type)
             return render_template(
                 "table_details.html",
                 rows=rows,
