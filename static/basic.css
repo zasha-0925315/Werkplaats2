@@ -231,3 +231,10 @@ a {
     text-decoration: none;
 }
 
+/* update form */
+.formclass {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
