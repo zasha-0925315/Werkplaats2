@@ -52,9 +52,11 @@ body {
 }
 img, iframe {border: none; max-width: 100%}
 
-a {color: var(--c5);  text-decoration:none}
+a {color: var(--textcolor);  text-decoration:none}
 
-a:hover {color: var(--c5);}
+a:hover {
+    transform: scale(1.1) perspective(1px);
+}
 
 pre {font: 1em/1.6 var(--mono); background: var(--c2); padding: 1em; overflow: auto}
 
@@ -269,6 +271,7 @@ section>section {
 .nav__logo, .nav__menu {
     display: -webkit-flex;
     display: flex;
+    transition: all .3s ease-in-out;
 }
 
 .nav__menu {
