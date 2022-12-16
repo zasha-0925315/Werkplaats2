@@ -24,17 +24,17 @@ dbm = DatabaseModel(DATABASE_FILE)
 
 @app.before_request
 def before_request():
-    if "logged_in" not in session and request.endpoint not in ['login', 'static', 'login_index']:
+    if "user" not in session and request.endpoint not in ['login', 'static', 'login_index']:
         return redirect(url_for('login_index'))
 
 
 # This is the main route that shows the login page
 @app.route("/")
 def login_index():
-    if "logged_in" in session:
+    if "user" in session:
         return redirect(url_for('index'))
     else:
-        session.pop('logged_in', None)
+        session.pop('user', None)
         return render_template('login.html')
 
 
@@ -42,16 +42,17 @@ def login_index():
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     # Check if the form was submitted
-    Username = request.form.get('Username')
-    Password = request.form.get('Password')
     if request.method == 'POST':
+        Username = request.form.get('Username')
+        Password = request.form.get('Password')
         # Check if the username and password are correct
         data = Login_details
         if Username in data:
             if Password == data[Username]:
                 # If the username and password are correct, redirect to the main page
-                session['logged_in'] = True
-                return redirect(url_for('index'))
+                session['user'] = Username
+                tables = dbm.get_table_list()
+                return redirect(url_for('index', Username=Username, table_list=tables, database_file=DATABASE_FILE))
             else:
                 # If the password is incorrect, return to the login page
                 error = 'Gebruikersnaam of wachtwoord is incorrect'
@@ -67,7 +68,7 @@ def login():
 def index():
     tables = dbm.get_table_list()
     return render_template(
-        "tables.html", table_list=tables, database_file=DATABASE_FILE
+        "tables.html", table_list=tables, database_file=DATABASE_FILE, Username=session['user']
     )
 
 
