@@ -52,6 +52,7 @@
 {% if table_name == 'leerdoelen' %}
     <p>Update de leerdoelen hier:</p>
     <div class="container_update">
+    <div class="update_form">
         <form action="#" method="POST">
             <div>
                 <label for="leerdoel">leerdoel:
@@ -68,12 +69,14 @@
         </div>
     </form>
     </div>
+    </div>
 {% endif %}
 
 <!-- table name 'vragen' is getting called in here when you select the table -->
 {% if table_name == 'vragen' %}
     <p id="updatetext">Update de vragen hier:</p>
     <div class="container_update">
+    <div class="update_form">
         <form action="#" method="POST">
             <div>
                 <label for="leerdoel">leerdoel:
@@ -97,6 +100,7 @@
         <button type="submit">Delete</button>
     </form>
         </form>
+    </div>
     </div>
 {% endif %}
 <a href="/table_details/{{ table_name }}"><button class="button2">Terug naar lijst</button></a>
