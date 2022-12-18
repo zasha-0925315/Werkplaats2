@@ -308,6 +308,10 @@ section>section {
     margin:0 10px;
 }
 
+.redirectbutton:hover {
+    opacity: 0.9;
+}
+
 .redirecthome {
     display: flex;
 }
