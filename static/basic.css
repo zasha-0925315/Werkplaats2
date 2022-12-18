@@ -124,6 +124,9 @@ tbody tr td:last-child{
 
 
 #table_box, #form_box{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     width: 100%;
     min-width: fit-content;
     padding: 10px 30px;
@@ -163,6 +166,7 @@ tbody tr td:last-child{
 #form_box input, #form_box select {
     background-color: var(--inba);
     border: 2px solid var(--inbr);
+
 }
 
 #like_input {
