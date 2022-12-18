@@ -6,35 +6,29 @@
     <title>Update</title>
 </head>
 <body>
-
-<h1>Update pagina</h1>
-<p>Dit is de update pagina</p>
-
-<!-- Table name auteurs is getting called when you select the table name -->
+{% include "header.html" %}
+<div id="update_container">
 {% if table_name == 'auteurs' %}
-    <p>Update de auteur hier:</p>
-    <div class="container_update">
+<!-- Table name auteurs is getting called when you select the table name -->
+
+    <h2 id="updatetext">Update de auteur hier:</h2>
      <div class="update_form">
         <form action="#" method="POST">
             <div>
-                <label for="voornaam">voornaam:
+                <label for="voornaam">voornaam:</label>
                 <input id="voornaam" type="text" name="voornaam" value="{{ row[1] }}">
-                </label>
             </div>
             <div>
-                <label for="achternaam">achternaam:
+                <label for="achternaam">achternaam:</label>
                 <input id="achternaam" type="text" name="achternaam" value="{{ row[2] }}">
-                </label>
             </div>
             <div>
-                <label for="geboortejaar">Geboortejaar:
+                <label for="geboortejaar">Geboortejaar:</label>
                 <input id="geboortejaar" type="text" name="geboortejaar" value="{{ row[3] }}">
-                </label>
             </div>
             <div id="boxcheck">
-                <label for="medewerker">Medewerker:
+                <label for="medewerker">Medewerker:</label>
                 <input id="medewerker" type="checkbox" {% if row[4] %} checked{% endif %} name="medewerker">
-                </label>
             </div>
             <div>
                 <button id="update_button" type="submit">update</button>
@@ -42,22 +36,19 @@
 
         </form>
      </div>
-    </div>
     <form action="delete.html">
-        <button type="submit">Delete</button>
+        <button id="delete_button" type="submit">Delete</button>
     </form>
 {% endif %}
 
 <!-- Table 'leerdoelen' is getting called when you select the table name -->
 {% if table_name == 'leerdoelen' %}
-    <p>Update de leerdoelen hier:</p>
-    <div class="container_update">
+    <h2 id="updatetext">Update de leerdoelen hier:</h2>
     <div class="update_form">
         <form action="#" method="POST">
             <div>
-                <label for="leerdoel">leerdoel:
+                <label for="leerdoel">leerdoel:</label>
                 <input id="leerdoel" type="text" name="leerdoel" value="{{ row[1] }}">
-                </label>
             </div>
             <div>
                 <button id="update_button" type="submit">update</button>
@@ -69,41 +60,38 @@
         </div>
     </form>
     </div>
-    </div>
 {% endif %}
 
 <!-- table name 'vragen' is getting called in here when you select the table -->
 {% if table_name == 'vragen' %}
-    <p id="updatetext">Update de vragen hier:</p>
-    <div class="container_update">
+    <h2 id="updatetext">Update de vragen hier:</h2>
     <div class="update_form">
+           <div>
+                <p> ID: {{ row [0] }}</p>
+            </div>
         <form action="#" method="POST">
             <div>
-                <label for="leerdoel">leerdoel:
+                <label for="leerdoel">leerdoel:</label>
                 <input id="leerdoel" type="text" name="leerdoel" value="{{ row[1] }}">
-                </label>
             </div>
             <div>
-                <label for="vraag">vraag:
+                <label for="vraag">vraag:</label>
                 <textarea id="vraag" name="" form="vraag" cols="30" rows="10">{{ row[2] }}</textarea>
-                </label>
             </div>
             <div>
-                <label for="auteur">auteur:
+                <label for="auteur">auteur:</label>
                 <input id="auteur" type="text" name="auteur" value="{{ row[3] }}">
-                </label>
             </div>
             <div>
                 <button id="update_button" type="submit">update</button>
+                <form action="delete.html">
+                <button id="delete_button" type="submit">Delete</button>
+                </form>
             </div>
-            <form action="delete.html">
-        <button type="submit">Delete</button>
-    </form>
         </form>
-    </div>
     </div>
 {% endif %}
 <a href="/table_details/{{ table_name }}"><button class="button2">Terug naar lijst</button></a>
-
+</div>
 </body>
 </html>

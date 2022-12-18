@@ -322,9 +322,13 @@ a {
 
 /* update form */
 
+#update_container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 
-
-.container_update, .update_form, #voornaam, #achternaam, #geboortejaar, #leerdoel, #areatext, #vraag, #auteur {
+.update_form {
     display: inline-flex;
     flex-direction: column;
     align-items: center;
@@ -336,25 +340,41 @@ a {
     border-collapse: collapse;
     border-spacing: 0;
     margin: 2em 0;
-    width: 100%;
+    width: fit-content;
     padding: 10px 30px;
     background-color: var(--c5);
     border-radius: var(--rc2);
     box-shadow: 0 0 8px gray;
 }
-
+#voornaam, #achternaam, #geboortejaar, #leerdoel, #vraag, #auteur {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+    color:var(--c4);
+    background: var(--c7);
+    border: 0;
+    width: fit-content;
+    margin: 10px 0 10px 10px;
+    padding: 10px 30px;
+    background-color: var(--c5);
+    border-radius: var(--rc2);
+    box-shadow: 0 0 8px gray;
+}
+.update_form form div {
+    display: flex;
+    align-items: center;
+}
 #update_button {
     background-color: var(--c8);
     color: var(--c5);
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
+    width: 100%;
+}
+
+#delete_button {
+    width: 100%;
     text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: var(--rc);
 }
 
 .button2 {
