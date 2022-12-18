@@ -13,6 +13,9 @@
 
     <h2 id="updatetext">Update de auteur hier:</h2>
      <div class="update_form">
+     <div>
+         <p> ID: {{ row [0] }}</p>
+     </div>
         <form action="#" method="POST">
             <div>
                 <label for="voornaam">voornaam:</label>
@@ -45,6 +48,9 @@
 {% if table_name == 'leerdoelen' %}
     <h2 id="updatetext">Update de leerdoelen hier:</h2>
     <div class="update_form">
+      <div>
+          <p> ID: {{ row [0] }}</p>
+      </div>
         <form action="#" method="POST">
             <div>
                 <label for="leerdoel">leerdoel:</label>
