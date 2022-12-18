@@ -226,7 +226,7 @@ article {background: var(--c2); border-radius: var(--rc); padding: 1em; box-shad
 /* Mark: Toegevoegd aan basic.css */
 main,footer {
     margin: 0 auto;
-    width: auto;
+    width: 60%;
     text-align: center;
     padding: 0 20px;
 }
@@ -274,6 +274,7 @@ section>section {
 
 .nav__menu {
     -webkit-align-items: center;
+    align-items: center;
     list-style: none;
     margin: 0 0 0 25px;
     padding: 0;
@@ -321,4 +322,77 @@ section>section {
     font-size: 25px;
     font-weight: 700;
     text-decoration: none;
+}
+
+/* update form */
+
+#update_container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.update_form {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+    color:var(--c4);
+    background: var(--c7);
+    border: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 2em 0;
+    width: fit-content;
+    padding: 10px 30px;
+    background-color: var(--c5);
+    border-radius: var(--rc2);
+    box-shadow: 0 0 8px gray;
+}
+#voornaam, #achternaam, #geboortejaar, #leerdoel, #vraag, #auteur {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+    color:var(--c4);
+    background: var(--c7);
+    border: 0;
+    width: fit-content;
+    margin: 10px 0 10px 10px;
+    padding: 10px 30px;
+    background-color: var(--c5);
+    border-radius: var(--rc2);
+    box-shadow: 0 0 8px gray;
+}
+.update_form form div {
+    display: flex;
+    align-items: baseline;
+
+}
+#update_button {
+    background-color: var(--c8);
+    color: var(--c5);
+    width: 100%;
+}
+
+#delete_button {
+    width: 100%;
+    text-decoration: none;
+}
+
+.button2 {
+    background-color: var(--c1);
+}
+
+input [type="text"] {
+    width: 85%;
+    height: 40px;
+    background-color: #f9faff;
+    box-sizing: border-box;
+    border: 2px solid #c3d0ed;
+    border-radius: 8px;
+    margin-top: -5px;
+    margin-bottom: 5px;
 }
