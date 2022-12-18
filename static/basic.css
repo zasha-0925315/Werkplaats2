@@ -364,7 +364,8 @@ a {
 }
 .update_form form div {
     display: flex;
-    align-items: center;
+    align-items: baseline;
+
 }
 #update_button {
     background-color: var(--c8);
