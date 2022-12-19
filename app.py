@@ -71,6 +71,8 @@ def index():
     )
 
 
+
+
 @app.route("/logout")
 def logout():
     session.pop('user', None)
@@ -96,6 +98,14 @@ def update(table_name, id):
     return render_template(
         "update.html", table_name=table_name, row=row
     )
+
+@app.route("/update/vraag", methods=['POST'])
+def updatevraag():
+    nieuwevraag = request.form['vraag']
+    id = request.form['vraag']
+    dbm.update_vraag(nieuwevraag, str(1))
+    return redirect(url_for("table_content", table_name='vragen'))
+
 
 
 @app.route("/table_details/<table_name>/<id>/delete", methods=['GET', 'DELETE'])
@@ -151,6 +161,7 @@ def table_filter(table_name=None):
             return render_template(
                 "table_details.html", rows=rows, columns=column_names, table_name=table_name, filter_name=filter_name
             )
+
 
 
 if __name__ == "__main__":
