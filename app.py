@@ -10,8 +10,9 @@ LISTEN_ALL = "0.0.0.0"
 FLASK_IP = LISTEN_ALL
 FLASK_PORT = 81
 FLASK_DEBUG = True
-
 app = Flask(__name__)
+
+# set the secret key
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 # This command creates the "<application directory>/databases/testcorrect_vragen.db" path
 DATABASE_FILE = os.path.join(app.root_path, 'databases', 'testcorrect_vragen.db')
@@ -22,13 +23,14 @@ if not os.path.isfile(DATABASE_FILE):
 dbm = DatabaseModel(DATABASE_FILE)
 
 
+# checks on each screen if user is logged in, if not redirect to login page
 @app.before_request
 def before_request():
     if "user" not in session and request.endpoint not in ['login', 'static', 'login_index']:
         return redirect(url_for('login_index'))
 
 
-# This is the main route that shows the login page
+# if logged in, show the home page, otherwise show the login page
 @app.route("/")
 def login_index():
     if "user" in session:
@@ -38,7 +40,7 @@ def login_index():
         return render_template('login.html')
 
 
-# Route that handles the login form
+# checks if username and password are correct, if so, redirect to home page
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     # Check if the form was submitted
@@ -62,7 +64,7 @@ def login():
             return render_template('login.html', error=error)
 
 
-# This is the main route that shows the index page
+# This is the main route that shows the home page
 @app.route("/home")
 def index():
     tables = dbm.get_table_list()
@@ -71,6 +73,7 @@ def index():
     )
 
 
+# Redirects user to logout page and clears session
 @app.route("/logout")
 def logout():
     session.pop('user', None)
