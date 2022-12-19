@@ -102,9 +102,10 @@ def update(table_name, id):
 @app.route("/update/vraag", methods=['POST'])
 def updatevraag():
     nieuwevraag = request.form['vraag']
-    id = request.form['vraag']
-    dbm.update_vraag(nieuwevraag, str(1))
+    id = request.form['id']
+    dbm.update_vraag(nieuwevraag, id)
     return redirect(url_for("table_content", table_name='vragen'))
+
 
 
 
