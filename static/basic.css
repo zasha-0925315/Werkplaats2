@@ -304,7 +304,7 @@ section>section {
 
 .redirectbutton {
     display: inline;
-    width: 60%;
+    width: 90%;
     height: auto;
     padding: 15px 32px;
     background-color: #c548ac;
@@ -314,7 +314,7 @@ section>section {
 }
 
 .redirectbutton:hover {
-    opacity: 0.9;
+    opacity: 0.8;
 }
 
 .redirecthome {
