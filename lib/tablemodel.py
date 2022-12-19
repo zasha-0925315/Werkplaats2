@@ -111,3 +111,9 @@ class DatabaseModel:
 
         # Note that this method returns 2 variables!
         return table_content, table_headers
+
+    def delete(self, table_name, id):
+        db = sqlite3.connect(self.database_file)
+        cursor = db.cursor()
+        cursor.execute(f"DELETE FROM {table_name} WHERE id={id} ")
+        db.commit()
