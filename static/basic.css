@@ -305,7 +305,7 @@ section>section {
 .redirectbutton {
     display: inline;
     width: 60%;
-    height: 60%;
+    height: auto;
     padding: 15px 32px;
     background-color: #c548ac;
     filter: invert(100%);
