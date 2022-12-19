@@ -148,13 +148,13 @@ def table_filter(table_name=None):
                 "table_details.html", rows=rows, columns=column_names, table_name=table_name, filter_name=filter_name
             )
 
-@app.route("/table_details/<table_name>/<id>/delete", methods=['GET', 'DELETE'])
+@app.route("/table_details/<table_name>/<id>/delete", methods=['POST', 'GET', 'DELETE'])
 def delete(table_name, id):
-    row, column_names = dbm.get_data(table_name, id)
-    print(row)
+    dbm.delete(table_name, id)
+
 
     return render_template(
-        "delete.html", table_name=table_name, row=row
+        "delete.html"
     )
 
 if __name__ == "__main__":
