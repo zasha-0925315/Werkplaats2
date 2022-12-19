@@ -115,6 +115,7 @@ class DatabaseModel:
     def delete(self, table_name, id):
         cursor = sqlite3.connect(self.database_file).cursor()
         cursor.execute(f"DELETE FROM {table_name} WHERE id={id} ")
+        cursor.commit()
 
 
         # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
