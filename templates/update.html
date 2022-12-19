@@ -34,13 +34,10 @@
                 <input id="medewerker" type="checkbox" {% if row[4] %} checked{% endif %} name="medewerker">
             </div>
             <div>
-                <button id="update_button" type="submit">update</button>
-                <form action="delete.html">
-                <button id="delete_button" type="submit">Delete</button>
-                </form>
+                <button id="update_button" type="submit">Update</button>
             </div>
-
         </form>
+             <a href="delete"><button id="delete_button" type="submit">Delete</button></a>
      </div>
 
 {% endif %}
@@ -59,13 +56,9 @@
             </div>
             <div>
                 <button id="update_button" type="submit">update</button>
-                <form action="delete.html">
-                <button id="delete_button" type="submit">Delete</button>
-                </form>
             </div>
-        <div>
-        </div>
     </form>
+            <a href="delete"><button id="delete_button" type="submit">Delete</button></a>
     </div>
 {% endif %}
 
@@ -91,11 +84,9 @@
             </div>
             <div>
                 <button id="update_button" type="submit">update</button>
-                <form action="delete.html">
-                <button id="delete_button" type="submit">Delete</button>
-                </form>
             </div>
         </form>
+        <a href="delete"><button id="delete_button" type="submit">Delete</button></a>
     </div>
 {% endif %}
 <a href="/table_details/{{ table_name }}"><button class="button2">Terug naar lijst</button></a>

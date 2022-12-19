@@ -155,5 +155,6 @@ def delete(table_name, id):
         "delete.html"
     )
 
+
 if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)
