@@ -46,7 +46,7 @@
 {% if table_name == 'leerdoelen' %}
     <p>Update de leerdoelen hier:</p>
     <div class="formclass">
-        <form action="#" method="POST">
+        <form action="/update/leerdoel" method="POST">
             <div>
                 <label for="leerdoel">leerdoel:</label>
                 <input id="leerdoel" type="text" name="leerdoel" value="{{ row[1] }}">
@@ -74,8 +74,8 @@
                 <input id="id" type="hidden" name="id" value="{{ row[0] }}">
             </div>
             <div>
-                <label for="leerdoel">leerdoel:</label>
-                <input id="leerdoel" type="text" name="leerdoel" value="{{ row[1] }}">
+                <label for="vragen_leerdoel_label">leerdoel:</label>
+                <input id="vragen_leerdoel" type="number" name="vragen_leerdoel" value="{{ row[1] }}">
             </div>
             <div id="areatext">
                 <label for="vraag">vraag:</label>
@@ -87,8 +87,8 @@
 
             </div>
             <div>
-                <label for="auteur">auteur: </label>
-                <input id="auteur" type="text" name="auteur" value="{{ row[3] }}">
+                <label for="vragen_auteur_label">auteur: </label>
+                <input id="vragen_auteur" type="number" name="vragen_auteur" value="{{ row[3] }}">
             </div>
             <div class="buttonupdate">
                 <button type="submit">update</button>
