@@ -140,22 +140,6 @@ def updateauteurs():
 
 
 
-
-
-
-
-
-
-
-@app.route("/table_details/<table_name>/<id>/delete", methods=['GET', 'DELETE'])
-def delete(table_name, id):
-    row, column_names = dbm.get_data(table_name, id)
-
-    return render_template(
-        "delete.html", table_name=table_name, row=row
-    )
-
-
 @app.route("/table_details/<table_name>", methods=("POST", "GET"))
 def table_filter(table_name=None):
     match table_name:
