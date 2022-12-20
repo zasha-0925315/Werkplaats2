@@ -125,16 +125,8 @@ def updateleerdoel():
     dbm.update_leerdoelen(edit_leerdoel, leerdoel_id)
     return redirect(url_for("table_content", table_name='leerdoelen'))
 
-# def updateleerdoel():
-#
-#     id = request.form['id']
-#
-#     return redirect(url_for("table_content", table_name='vragen'))
 
-# def updateauteur():
-#     vragen_auteur = request.form['vragen_auteur']
-#     dbm.update_auteur(vragen_auteur,id)
-#     return redirect(url_for("table_content", table_name='leerdoelen'))
+
 
 
 @app.route("/table_details/<table_name>/<id>/delete", methods=['GET', 'DELETE'])
