@@ -102,7 +102,7 @@ def update(table_name, id):
 
 # App Routes | Update function | Jordy Arjun Sharma
 
-# 'Vragen' page
+# 'Vragen' Page:
 @app.route("/update/vraag", methods=['POST'])
 def updatevraag():
     field = request.form['vraag']
@@ -117,13 +117,30 @@ def updatevraag():
 
 
 
-# 'Leerdoelen' page
+# 'Leerdoelen' Page:
 @app.route("/update/leerdoelen", methods=['POST'])
 def updateleerdoel():
     edit_leerdoel = request.form['formleerdoel']
     leerdoel_id = request.form['leerdoelid']
     dbm.update_leerdoelen(edit_leerdoel, leerdoel_id)
     return redirect(url_for("table_content", table_name='leerdoelen'))
+
+
+# 'Auteurs' Page:
+@app.route("/update/auteurs", methods=['POST'])
+def updateauteurs():
+    auteurs_id = request.form['auteursid']
+    edit_voornaam = request.form['voornaam']
+    edit_achternaam = request.form['achternaam']
+    edit_geboortejaar = request.form['geboortejaar']
+    edit_medewerker = request.form['medewerker']
+    dbm.update_auteurs(edit_voornaam, edit_achternaam, edit_geboortejaar, edit_medewerker, auteurs_id)
+    return redirect(url_for("table_content", table_name='auteurs'))
+
+
+
+
+
 
 
 
