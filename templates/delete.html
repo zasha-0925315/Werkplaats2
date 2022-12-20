@@ -10,11 +10,11 @@
     <h1>Delete pagina</h1>
 
     <p>Hier kunt u een rij verwijderen</p>
-    <form class="delete" action="/home" method="GET">
+    <form class="delete" action="/table_details/{{ table_name }}" method="GET">
         <p>klik op ja om het te bevestigen!</p>
         <input type="submit" value="ja">
         <p>klik op nee om terug te keren naar de database</p>
-        <a href="#">Nee</a>
+        <a href="/table_details/{{ table_name }}">Nee</a>
     </form>
 
 

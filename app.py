@@ -152,7 +152,7 @@ def delete(table_name, id):
 
 
     return render_template(
-        "delete.html"
+        "delete.html", table_name=table_name
     )
 
 
