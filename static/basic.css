@@ -382,8 +382,9 @@ section>section {
 }
 
 #delete_button {
-    width: 100%;
-    text-decoration: none;
+    background-color: var(--c1);
+    color: var(--c2);
+    width: 363px;
 }
 
 .button2 {
