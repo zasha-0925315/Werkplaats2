@@ -141,6 +141,17 @@ class DatabaseModel:
 
 
 
+
+    #UPDATE QUERIES 'AUTEURS' PAGE:
+    def update_auteurs(self,edit_voornaam, edit_achternaam, edit_geboortejaar, edit_medewerker, auteurs_id):
+        cursor = sqlite3.connect(self.database_file)
+        cursor.execute(f''' UPDATE auteurs SET voornaam='{edit_voornaam}' WHERE id='{auteurs_id}' ;''')
+        cursor.execute(f''' UPDATE auteurs SET achternaam='{edit_achternaam}' WHERE id='{auteurs_id}' ;''')
+        cursor.execute(f''' UPDATE auteurs SET geboortejaar='{edit_geboortejaar}' WHERE id='{auteurs_id}' ;''')
+        cursor.execute(f''' UPDATE auteurs SET medewerker='{edit_medewerker}' WHERE id='{auteurs_id}' ;''')
+        cursor.commit()
+
+
     # def vragen_auteur(self, leerdoelform, id):
     #     cursor = sqlite3.connect(self.database_file)
     #     cursor.execute(f''' UPDATE vragen SET leerdoel='{leerdoelform}' WHERE id='{id}' ;''')
