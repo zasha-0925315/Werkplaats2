@@ -99,14 +99,30 @@ def update(table_name, id):
         "update.html", table_name=table_name, row=row
     )
 
+# App Routes | Update | Jordy Arjun Sharma
+
 @app.route("/update/vraag", methods=['POST'])
 def updatevraag():
-    nieuwevraag = request.form['vraag']
+    field = request.form['vraag']
+    vragenleerdoel = request.form['vragen_leerdoel']
+    vragenauteurs = request.form['vragen_auteur']
     id = request.form['id']
-    dbm.update_vraag(nieuwevraag, id)
+    dbm.update_vraag(field, id)
+    dbm.update_leerdoel(vragenleerdoel, id)
+    dbm.update_auteur(vragenauteurs, id)
     return redirect(url_for("table_content", table_name='vragen'))
 
 
+# def updateleerdoel():
+#
+#     id = request.form['id']
+#
+#     return redirect(url_for("table_content", table_name='vragen'))
+
+# def updateauteur():
+#     vragen_auteur = request.form['vragen_auteur']
+#     dbm.update_auteur(vragen_auteur,id)
+#     return redirect(url_for("table_content", table_name='leerdoelen'))
 
 
 @app.route("/table_details/<table_name>/<id>/delete", methods=['GET', 'DELETE'])
