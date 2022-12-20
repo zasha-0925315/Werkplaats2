@@ -113,7 +113,22 @@ class DatabaseModel:
         return table_content, table_headers
 
 
-    def update_vraag(self, nieuwevraag, id):
+    def update_vraag(self, field, id):
         cursor = sqlite3.connect(self.database_file)
-        cursor.execute(f''' UPDATE vragen SET vraag='{nieuwevraag}' WHERE id='{id}' ;''')
+        cursor.execute(f''' UPDATE vragen SET vraag='{field}' WHERE id='{id}' ;''')
         cursor.commit()
+
+    def update_leerdoel(self, vragenleerdoel, id):
+        cursor = sqlite3.connect(self.database_file)
+        cursor.execute(f''' UPDATE vragen SET leerdoel='{vragenleerdoel}' WHERE id='{id}' ;''')
+        cursor.commit()
+
+    def update_auteur(self, vragenauteurs, id):
+        cursor = sqlite3.connect(self.database_file)
+        cursor.execute(f''' UPDATE vragen SET auteur='{vragenauteurs}' WHERE id='{id}' ;''')
+        cursor.commit()
+
+    # def vragen_auteur(self, leerdoelform, id):
+    #     cursor = sqlite3.connect(self.database_file)
+    #     cursor.execute(f''' UPDATE vragen SET leerdoel='{leerdoelform}' WHERE id='{id}' ;''')
+    #     cursor.commit()
