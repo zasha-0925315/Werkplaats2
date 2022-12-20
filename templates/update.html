@@ -38,7 +38,9 @@
                 <button id="update_button" type="submit">Update</button>
             </div>
         </form>
+     <div class="delete_div">
              <a href="delete"><button id="delete_button" type="submit">Delete</button></a>
+     </div>
      </div>
 
 {% endif %}
@@ -53,14 +55,17 @@
         <form action="/update/leerdoelen" method="POST">
             <div>
                 <input id="leerdoelid" type="hidden" name="leerdoelid" value="{{ row[0] }}">
-                <label for="leerdoel_label">leerdoel:</label>
+                <label for="leerdoel_label">leerdoel: </label>
                 <input id="formleerdoel" type="text" name="formleerdoel" value="{{ row[1] }}">
             </div>
+            <br>
             <div>
                 <button id="update_button" type="submit">update</button>
             </div>
     </form>
+        <div class="delete_div">
             <a href="delete"><button id="delete_button" type="submit">Delete</button></a>
+        </div>
     </div>
 {% endif %}
 
@@ -96,7 +101,9 @@
                 <button id="update_button" type="submit">Update</button>
             </div>
         </form>
+    <div class="delete_div">
         <a href="delete"><button id="delete_button" type="submit">Delete</button></a>
+    </div>
     </div>
 {% endif %}
 <a href="/table_details/{{ table_name }}"><button class="button2">Terug naar lijst</button></a>

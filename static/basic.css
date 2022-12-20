@@ -381,10 +381,13 @@ section>section {
     width: 100%;
 }
 
+.delete_div {
+    width: 100%;
+}
 #delete_button {
     background-color: var(--c1);
     color: var(--c2);
-    width: 363px;
+    width: 100%;
 }
 
 .button2 {
