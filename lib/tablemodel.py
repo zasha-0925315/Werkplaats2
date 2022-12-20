@@ -113,6 +113,9 @@ class DatabaseModel:
         return table_content, table_headers
 
 
+
+# HERE ARE THE SQL QUERIES OF THE UPDATE FUNCTION
+# UPDATE QUERIES 'VRAGEN' PAGE:
     def update_vraag(self, field, id):
         cursor = sqlite3.connect(self.database_file)
         cursor.execute(f''' UPDATE vragen SET vraag='{field}' WHERE id='{id}' ;''')
@@ -127,6 +130,16 @@ class DatabaseModel:
         cursor = sqlite3.connect(self.database_file)
         cursor.execute(f''' UPDATE vragen SET auteur='{vragenauteurs}' WHERE id='{id}' ;''')
         cursor.commit()
+
+
+
+    # UPDATE QUERY 'LEERDOELEN' PAGE:
+    def update_leerdoelen(self, edit_leerdoel, leerdoel_id):
+        cursor = sqlite3.connect(self.database_file)
+        cursor.execute(f'''UPDATE leerdoelen SET leerdoel='{edit_leerdoel}' WHERE id='{leerdoel_id}'; ''')
+        cursor.commit()
+
+
 
     # def vragen_auteur(self, leerdoelform, id):
     #     cursor = sqlite3.connect(self.database_file)
