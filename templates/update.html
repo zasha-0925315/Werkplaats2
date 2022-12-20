@@ -17,6 +17,7 @@
          <p> ID: {{ row [0] }}</p>
      </div>
         <form action="/update/auteurs" method="POST">
+        <input id="auteursid" type="hidden" name="auteursid" value="{{ row[0] }}">
             <div>
                 <label for="voornaam">voornaam:</label>
                 <input id="voornaam" type="text" name="voornaam" value="{{ row[1] }}">
@@ -54,9 +55,6 @@
                 <input id="leerdoelid" type="hidden" name="leerdoelid" value="{{ row[0] }}">
                 <label for="leerdoel_label">leerdoel:</label>
                 <input id="formleerdoel" type="text" name="formleerdoel" value="{{ row[1] }}">
-            </div>
-            <div class="buttonupdate">
-                <button type="submit">update</button>
             </div>
             <div>
                 <button id="update_button" type="submit">update</button>
