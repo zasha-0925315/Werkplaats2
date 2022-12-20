@@ -14,7 +14,8 @@
 {% if table_name == 'auteurs' %}
     <p>Update de auteur hier:</p>
     <div class="formclass">
-        <form action="#" method="POST">
+        <form action="/update/auteurs" method="POST">
+        <input id="auteursid" type="hidden" name="auteursid" value="{{ row[0] }}">
             <div>
                 <label for="voornaam">voornaam:</label>
                 <input id="voornaam" type="text" name="voornaam" value="{{ row[1] }}">
@@ -25,7 +26,7 @@
             </div>
             <div>
                 <label for="geboortejaar">Geboortejaar:</label>
-                <input id="geboortejaar" type="text" name="geboortejaar" value="{{ row[3] }}">
+                <input id="geboortejaar" type="number" name="geboortejaar" value="{{ row[3] }}">
             </div>
             <div id="boxcheck">
                 <label for="medewerker">Medewerker: </label>
