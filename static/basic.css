@@ -401,3 +401,21 @@ input [type="text"] {
     margin-top: -5px;
     margin-bottom: 5px;
 }
+
+#ja_knop {
+    width: 363px;
+    background-color: var(--c8);
+    margin-right: 400px;
+}
+
+#nee_knop {
+    background-color: var(--c1);
+    border-radius: 8px;
+    width: 363px;
+    height: 37px;
+    display: grid;
+    text-align: center;
+    margin-left: 487px!important;
+    padding: 6px;
+    margin-top: -41px!important;
+}
