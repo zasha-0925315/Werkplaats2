@@ -89,18 +89,6 @@ class DatabaseModel:
         # Note that this method returns 2 variables!
         return table_content, table_headers
 
-    def update(self):
-        cursor = sqlite3.connect(self.database_file).cursor()
-        cursor.execute("UPDATE vragen SET vraag='{vraag.leerdoel}' WHERE id='{vraag.id}'")
-
-        # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
-        table_headers = [column_name[0] for column_name in cursor.description]
-        table_content = cursor.fetchall()
-
-        # Note that this method returns 2 variables!
-        return table_content, table_headers
-
-
 
     def get_data(self, table_name, id):
         cursor = sqlite3.connect(self.database_file).cursor()
@@ -111,6 +99,52 @@ class DatabaseModel:
 
         # Note that this method returns 2 variables!
         return table_content, table_headers
+
+
+
+# HERE ARE THE SQL QUERIES OF THE UPDATE FUNCTION
+# UPDATE QUERIES 'VRAGEN' PAGE:
+    def update_vraag(self, field, id):
+        cursor = sqlite3.connect(self.database_file)
+        cursor.execute(f''' UPDATE vragen SET vraag='{field}' WHERE id='{id}' ;''')
+        cursor.commit()
+
+    def update_leerdoel(self, vragenleerdoel, id):
+        cursor = sqlite3.connect(self.database_file)
+        cursor.execute(f''' UPDATE vragen SET leerdoel='{vragenleerdoel}' WHERE id='{id}' ;''')
+        cursor.commit()
+
+    def update_auteur(self, vragenauteurs, id):
+        cursor = sqlite3.connect(self.database_file)
+        cursor.execute(f''' UPDATE vragen SET auteur='{vragenauteurs}' WHERE id='{id}' ;''')
+        cursor.commit()
+
+
+
+    # UPDATE QUERY 'LEERDOELEN' PAGE:
+    def update_leerdoelen(self, edit_leerdoel, leerdoel_id):
+        cursor = sqlite3.connect(self.database_file)
+        cursor.execute(f'''UPDATE leerdoelen SET leerdoel='{edit_leerdoel}' WHERE id='{leerdoel_id}'; ''')
+        cursor.commit()
+
+
+
+
+    #UPDATE QUERIES 'AUTEURS' PAGE:
+    def update_auteurs(self,edit_voornaam, edit_achternaam, edit_geboortejaar, edit_medewerker, auteurs_id):
+        cursor = sqlite3.connect(self.database_file)
+        cursor.execute(f''' UPDATE auteurs SET voornaam='{edit_voornaam}' WHERE id='{auteurs_id}' ;''')
+        cursor.execute(f''' UPDATE auteurs SET achternaam='{edit_achternaam}' WHERE id='{auteurs_id}' ;''')
+        cursor.execute(f''' UPDATE auteurs SET geboortejaar='{edit_geboortejaar}' WHERE id='{auteurs_id}' ;''')
+        cursor.execute(f''' UPDATE auteurs SET medewerker='{edit_medewerker}' WHERE id='{auteurs_id}' ;''')
+        cursor.commit()
+
+
+    # def vragen_auteur(self, leerdoelform, id):
+    #     cursor = sqlite3.connect(self.database_file)
+    #     cursor.execute(f''' UPDATE vragen SET leerdoel='{leerdoelform}' WHERE id='{id}' ;''')
+    #     cursor.commit()
+
 
     def delete(self, table_name, id):
         db = sqlite3.connect(self.database_file)

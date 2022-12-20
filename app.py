@@ -101,6 +101,61 @@ def update(table_name, id):
     )
 
 
+# App Routes | Update function | Jordy Arjun Sharma
+
+# 'Vragen' Page:
+@app.route("/update/vraag", methods=['POST'])
+def updatevraag():
+    field = request.form['vraag']
+    vragenleerdoel = request.form['vragen_leerdoel']
+    vragenauteurs = request.form['vragen_auteur']
+    id = request.form['id']
+    dbm.update_vraag(field, id)
+    dbm.update_leerdoel(vragenleerdoel, id)
+    dbm.update_auteur(vragenauteurs, id)
+    return redirect(url_for("table_content", table_name='vragen'))
+
+
+
+
+# 'Leerdoelen' Page:
+@app.route("/update/leerdoelen", methods=['POST'])
+def updateleerdoel():
+    edit_leerdoel = request.form['formleerdoel']
+    leerdoel_id = request.form['leerdoelid']
+    dbm.update_leerdoelen(edit_leerdoel, leerdoel_id)
+    return redirect(url_for("table_content", table_name='leerdoelen'))
+
+
+# 'Auteurs' Page:
+@app.route("/update/auteurs", methods=['POST'])
+def updateauteurs():
+    auteurs_id = request.form['auteursid']
+    edit_voornaam = request.form['voornaam']
+    edit_achternaam = request.form['achternaam']
+    edit_geboortejaar = request.form['geboortejaar']
+    edit_medewerker = request.form['medewerker']
+    dbm.update_auteurs(edit_voornaam, edit_achternaam, edit_geboortejaar, edit_medewerker, auteurs_id)
+    return redirect(url_for("table_content", table_name='auteurs'))
+
+
+
+
+
+
+
+
+
+
+@app.route("/table_details/<table_name>/<id>/delete", methods=['GET', 'DELETE'])
+def delete(table_name, id):
+    row, column_names = dbm.get_data(table_name, id)
+
+    return render_template(
+        "delete.html", table_name=table_name, row=row
+    )
+
+
 @app.route("/table_details/<table_name>", methods=("POST", "GET"))
 def table_filter(table_name=None):
     match table_name:
