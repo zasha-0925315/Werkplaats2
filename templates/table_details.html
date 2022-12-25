@@ -36,7 +36,7 @@
                         {% for field in row %}
                             <td>{{ field }}</td>
                         {% endfor %}
-                    <td><button class="button1"><a href="{{ table_name }}/{{ loop.index }}/update">Wijzig</a></button></td>
+                    <td><button class="button1"><a href="{{ table_name }}/{{ row[0] }}/update">Wijzig</a></button></td>
                     </tr>
                 {% endfor %}
             </tbody>

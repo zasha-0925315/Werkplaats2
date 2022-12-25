@@ -73,7 +73,7 @@ class DatabaseModel:
                                f"WHERE {selected_column} LIKE '%{typed}%'")
             case "is_not":
                 cursor.execute(f"SELECT * FROM {table_name} "
-                               f"WHERE {selected_column} IS NOT {typed}")
+                               f"WHERE {selected_column} NOT LIKE '%{typed}%'")
             case "between":
                 cursor.execute(f"SELECT * FROM {table_name} "
                                f"WHERE {selected_column} BETWEEN {between_typed} AND {between_typed2}")
