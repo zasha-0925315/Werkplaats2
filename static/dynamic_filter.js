@@ -24,6 +24,9 @@ function displayWayOption() {
       booleanValue.style.display = "none";
       date1900.style.display = "none";
       way.selectedIndex = 0;
+      likeInput.style.display = "flex";
+      betweenInput.style.display = "none";
+      dataTypeInput.style.display = "none";
       break;
     case 'voornaam':
       like.style.display = "flex";
@@ -33,6 +36,9 @@ function displayWayOption() {
       booleanValue.style.display = "none";
       date1900.style.display = "none";
       way.selectedIndex = 0;
+      likeInput.style.display = "flex";
+      betweenInput.style.display = "none";
+      dataTypeInput.style.display = "none";
       break;
     case 'achternaam':
       like.style.display = "flex";
@@ -42,6 +48,9 @@ function displayWayOption() {
       booleanValue.style.display = "none";
       date1900.style.display = "none";
       way.selectedIndex = 0;
+      likeInput.style.display = "flex";
+      betweenInput.style.display = "none";
+      dataTypeInput.style.display = "none";
       break;
     case 'geboortejaar':
       like.style.display = "flex";
@@ -52,6 +61,9 @@ function displayWayOption() {
       date1900.style.display = "flex";
       way.selectedIndex = 0;
       dataType.selectedIndex = 1;
+      likeInput.style.display = "flex";
+      betweenInput.style.display = "none";
+      dataTypeInput.style.display = "none";
       break;
     case 'medewerker':
       like.style.display = "none";
@@ -87,6 +99,9 @@ function displayWayOption() {
       booleanValue.style.display = "none";
       date1900.style.display = "none";
       way.selectedIndex = 0;
+      likeInput.style.display = "flex";
+      betweenInput.style.display = "none";
+      dataTypeInput.style.display = "none";
       break;
     default:
       like.style.display = "flex";
@@ -122,13 +137,16 @@ function displayInput() {
       likeInput.style.display = "none";
       betweenInput.style.display = "none";
       dataTypeInput.style.display = "flex";
+      if (columnSelect.value === 'geboortejaar'){
+        dataType.selectedIndex = 1
+      }
+
       break;
     default:
       likeInput.style.display = "flex";
       betweenInput.style.display = "none";
       dataTypeInput.style.display = "none";
   }
-  dataType.selectedIndex = 0;
 }
 
 // Event listeners to check if someting happend on the page
