@@ -93,7 +93,7 @@ def table_content(table_name=None):
 
 
 @app.route("/table_details/<table_name>/<id>/update", methods=['GET', 'POST'])
-def update(table_name, id):
+def get_data(table_name, id):
     row, column_names = dbm.get_data(table_name, id)
 
     return render_template(

@@ -26,6 +26,9 @@
             <thead>
                 <tr>
                     {% for column in columns %}
+                        {% if column == "(auteurs.voornaam || ' ' || auteurs.achternaam)" %}
+                            {% set column = "auteurs" %}
+                        {% endif %}
                         <th>{{ column }}</th>
                     {% endfor %}
                 </tr>

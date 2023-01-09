@@ -22,6 +22,16 @@ class DatabaseModel:
     def get_table_content(self, table_name):
         cursor = sqlite3.connect(self.database_file).cursor()
         cursor.execute(f"SELECT * FROM {table_name}")
+
+        match table_name:
+            case "vragen":
+                cursor.execute(f"SELECT vragen.id, leerdoelen.leerdoel, vraag, "
+                               f"(auteurs.voornaam || ' ' || auteurs.achternaam) "
+                               f"FROM vragen "
+                               f"LEFT JOIN leerdoelen on vragen.leerdoel = leerdoelen.id "
+                               f"LEFT JOIN auteurs on vragen.auteur = auteurs.id ")
+            case _:
+                cursor.execute(f"SELECT * FROM {table_name}")
         # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
         table_headers = [column_name[0] for column_name in cursor.description]
         table_content = cursor.fetchall()
@@ -34,20 +44,40 @@ class DatabaseModel:
 
         match filter_name:
             case "wrong_leerdoelen":
-                cursor.execute(f"SELECT * FROM {table_name} "
-                               f"WHERE leerdoel NOT IN (SELECT id FROM leerdoelen)")
+                cursor.execute(f"SELECT vragen.id, leerdoelen.leerdoel, vraag, "
+                               f"(auteurs.voornaam || ' ' || auteurs.achternaam) "
+                               f"FROM vragen "
+                               f"LEFT JOIN leerdoelen on vragen.leerdoel = leerdoelen.id "
+                               f"LEFT JOIN auteurs on vragen.auteur = auteurs.id "
+                               f"WHERE vragen.leerdoel NOT IN (SELECT id FROM leerdoelen)")
             case "wrong_auteurs":
-                cursor.execute(f"SELECT * FROM {table_name} "
+                cursor.execute(f"SELECT vragen.id, leerdoelen.leerdoel, vraag, "
+                               f"(auteurs.voornaam || ' ' || auteurs.achternaam) "
+                               f"FROM vragen "
+                               f"LEFT JOIN leerdoelen on vragen.leerdoel = leerdoelen.id "
+                               f"LEFT JOIN auteurs on vragen.auteur = auteurs.id "
                                f"WHERE auteur NOT IN (SELECT id FROM auteurs)")
             case "html_system_codes":
-                cursor.execute(f"SELECT * FROM {table_name} "
+                cursor.execute(f"SELECT vragen.id, leerdoelen.leerdoel, vraag, "
+                               f"(auteurs.voornaam || ' ' || auteurs.achternaam) "
+                               f"FROM vragen "
+                               f"LEFT JOIN leerdoelen on vragen.leerdoel = leerdoelen.id "
+                               f"LEFT JOIN auteurs on vragen.auteur = auteurs.id "
                                f"WHERE vraag LIKE '%<br>%' OR vraag LIKE '%&nbsp;%' OR vraag LIKE '%¤%'")
             case "empty_rows":
-                cursor.execute(f"SELECT * FROM {table_name} "
-                               f"WHERE leerdoel IS NULL OR auteur IS NULL;")
+                cursor.execute(f"SELECT vragen.id, leerdoelen.leerdoel, vraag, "
+                               f"(auteurs.voornaam || ' ' || auteurs.achternaam) "
+                               f"FROM vragen "
+                               f"LEFT JOIN leerdoelen on vragen.leerdoel = leerdoelen.id "
+                               f"LEFT JOIN auteurs on vragen.auteur = auteurs.id "
+                               f"WHERE leerdoelen.leerdoel IS NULL OR vragen.auteur IS NULL;")
             case "full_rows":
-                cursor.execute(f"SELECT * FROM {table_name} "
-                               f"WHERE leerdoel IS NOT NULL OR auteur IS NOT NULL;")
+                cursor.execute(f"SELECT vragen.id, leerdoelen.leerdoel, vraag, "
+                               f"(auteurs.voornaam || ' ' || auteurs.achternaam) "
+                               f"FROM vragen "
+                               f"LEFT JOIN leerdoelen on vragen.leerdoel = leerdoelen.id "
+                               f"LEFT JOIN auteurs on vragen.auteur = auteurs.id "
+                               f"WHERE leerdoelen.leerdoel IS NOT NULL AND vragen.auteur IS NOT NULL;")
 
         # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
         table_headers = [column_name[0] for column_name in cursor.description]
@@ -92,6 +122,9 @@ class DatabaseModel:
 
     def get_data(self, table_name, id):
         cursor = sqlite3.connect(self.database_file).cursor()
+        if table_name == 'vragen':
+            cursor.execute(f"SELECT * FROM vragen INNER JOIN leerdoelen ON vragen.leerdoel = leerdoelen.id")
+
         cursor.execute(f"SELECT * FROM {table_name} WHERE id={id}")
         # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
         table_headers = [column_name[0] for column_name in cursor.description]
