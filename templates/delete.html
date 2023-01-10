@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Delete</title>
+    <meta charset="utf-8"/>
+    <title>Test-Correct</title>
+    <meta name="description" content="Simple database display"/>
+    <meta name="author" content="Rotterdam Academy"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/static/basic.css" type="text/css">
 </head>
 <body>
-
+{% include "header.html" %}
+<main>
 
     <h1>Delete pagina</h1>
 
-    <p>Hier kunt u een rij verwijderen</p>
-    <form class="delete" action="#" method="post">
-        <p>klik op ja om het te bevestigen!</p>
-        <input type="submit" value="ja">
-        <p>klik op nee om terug te keren naar de database</p>
-        <a href="#">Nee</a>
+    <p>Hier kunt u een rij verwijderen.</p>
+    <form class="delete" action="/table_details/{{ table_name }}" method="GET">
+        <p>Klik op 'Ja' om het te bevestigen of klik 'Nee' om terug te keren naar de lijst.</p>
+        <input id="ja_knop" type="submit" value="Ja">
+        <a id="nee_knop" href="/table_details/{{ table_name }}">Nee</a>
     </form>
 
 
-
+</main>
 </body>
 </html>

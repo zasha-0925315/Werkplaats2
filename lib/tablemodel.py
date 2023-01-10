@@ -22,6 +22,16 @@ class DatabaseModel:
     def get_table_content(self, table_name):
         cursor = sqlite3.connect(self.database_file).cursor()
         cursor.execute(f"SELECT * FROM {table_name}")
+
+        match table_name:
+            case "vragen":
+                cursor.execute(f"SELECT vragen.id, leerdoelen.leerdoel, vraag, "
+                               f"(auteurs.voornaam || ' ' || auteurs.achternaam) "
+                               f"FROM vragen "
+                               f"LEFT JOIN leerdoelen on vragen.leerdoel = leerdoelen.id "
+                               f"LEFT JOIN auteurs on vragen.auteur = auteurs.id ")
+            case _:
+                cursor.execute(f"SELECT * FROM {table_name}")
         # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
         table_headers = [column_name[0] for column_name in cursor.description]
         table_content = cursor.fetchall()
@@ -33,24 +43,41 @@ class DatabaseModel:
         cursor = sqlite3.connect(self.database_file).cursor()
 
         match filter_name:
-
-            case "no_filter":
-                cursor.execute(f"SELECT * FROM {table_name}")
             case "wrong_leerdoelen":
-                cursor.execute(f"SELECT * FROM {table_name} "
-                               f"WHERE leerdoel NOT IN (SELECT id FROM leerdoelen)")
+                cursor.execute(f"SELECT vragen.id, leerdoelen.leerdoel, vraag, "
+                               f"(auteurs.voornaam || ' ' || auteurs.achternaam) "
+                               f"FROM vragen "
+                               f"LEFT JOIN leerdoelen on vragen.leerdoel = leerdoelen.id "
+                               f"LEFT JOIN auteurs on vragen.auteur = auteurs.id "
+                               f"WHERE vragen.leerdoel NOT IN (SELECT id FROM leerdoelen)")
             case "wrong_auteurs":
-                cursor.execute(f"SELECT * FROM {table_name} "
+                cursor.execute(f"SELECT vragen.id, leerdoelen.leerdoel, vraag, "
+                               f"(auteurs.voornaam || ' ' || auteurs.achternaam) "
+                               f"FROM vragen "
+                               f"LEFT JOIN leerdoelen on vragen.leerdoel = leerdoelen.id "
+                               f"LEFT JOIN auteurs on vragen.auteur = auteurs.id "
                                f"WHERE auteur NOT IN (SELECT id FROM auteurs)")
             case "html_system_codes":
-                cursor.execute(f"SELECT * FROM {table_name} "
+                cursor.execute(f"SELECT vragen.id, leerdoelen.leerdoel, vraag, "
+                               f"(auteurs.voornaam || ' ' || auteurs.achternaam) "
+                               f"FROM vragen "
+                               f"LEFT JOIN leerdoelen on vragen.leerdoel = leerdoelen.id "
+                               f"LEFT JOIN auteurs on vragen.auteur = auteurs.id "
                                f"WHERE vraag LIKE '%<br>%' OR vraag LIKE '%&nbsp;%' OR vraag LIKE '%¤%'")
             case "empty_rows":
-                cursor.execute(f"SELECT * FROM {table_name} "
-                               f"WHERE leerdoel IS NULL OR auteur IS NULL;")
+                cursor.execute(f"SELECT vragen.id, leerdoelen.leerdoel, vraag, "
+                               f"(auteurs.voornaam || ' ' || auteurs.achternaam) "
+                               f"FROM vragen "
+                               f"LEFT JOIN leerdoelen on vragen.leerdoel = leerdoelen.id "
+                               f"LEFT JOIN auteurs on vragen.auteur = auteurs.id "
+                               f"WHERE leerdoelen.leerdoel IS NULL OR vragen.auteur IS NULL;")
             case "full_rows":
-                cursor.execute(f"SELECT * FROM {table_name} "
-                               f"WHERE leerdoel IS NOT NULL OR auteur IS NOT NULL;")
+                cursor.execute(f"SELECT vragen.id, leerdoelen.leerdoel, vraag, "
+                               f"(auteurs.voornaam || ' ' || auteurs.achternaam) "
+                               f"FROM vragen "
+                               f"LEFT JOIN leerdoelen on vragen.leerdoel = leerdoelen.id "
+                               f"LEFT JOIN auteurs on vragen.auteur = auteurs.id "
+                               f"WHERE leerdoelen.leerdoel IS NOT NULL AND vragen.auteur IS NOT NULL;")
 
         # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
         table_headers = [column_name[0] for column_name in cursor.description]
@@ -76,7 +103,7 @@ class DatabaseModel:
                                f"WHERE {selected_column} LIKE '%{typed}%'")
             case "is_not":
                 cursor.execute(f"SELECT * FROM {table_name} "
-                               f"WHERE {selected_column} IS NOT {typed}")
+                               f"WHERE {selected_column} NOT LIKE '%{typed}%'")
             case "between":
                 cursor.execute(f"SELECT * FROM {table_name} "
                                f"WHERE {selected_column} BETWEEN {between_typed} AND {between_typed2}")
@@ -92,25 +119,68 @@ class DatabaseModel:
         # Note that this method returns 2 variables!
         return table_content, table_headers
 
-    def update(self):
-        cursor = sqlite3.connect(self.database_file).cursor()
-        cursor.execute("UPDATE vragen SET vraag='{vraag.leerdoel}' WHERE id='{vraag.id}'")
-
-        # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
-        table_headers = [column_name[0] for column_name in cursor.description]
-        table_content = cursor.fetchall()
-
-        # Note that this method returns 2 variables!
-        return table_content, table_headers
-
-
 
     def get_data(self, table_name, id):
         cursor = sqlite3.connect(self.database_file).cursor()
-        cursor.execute(f"SELECT * FROM {table_name} WHERE id={id} ")
+        if table_name == 'vragen':
+            cursor.execute(f"SELECT * FROM vragen INNER JOIN leerdoelen ON vragen.leerdoel = leerdoelen.id")
+
+        cursor.execute(f"SELECT * FROM {table_name} WHERE id={id}")
         # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
         table_headers = [column_name[0] for column_name in cursor.description]
         table_content = cursor.fetchone()
 
         # Note that this method returns 2 variables!
         return table_content, table_headers
+
+
+
+# HERE ARE THE SQL QUERIES OF THE UPDATE FUNCTION
+# UPDATE QUERIES 'VRAGEN' PAGE:
+    def update_vraag(self, field, id):
+        cursor = sqlite3.connect(self.database_file)
+        cursor.execute(f''' UPDATE vragen SET vraag='{field}' WHERE id='{id}' ;''')
+        cursor.commit()
+
+    def update_leerdoel(self, vragenleerdoel, id):
+        cursor = sqlite3.connect(self.database_file)
+        cursor.execute(f''' UPDATE vragen SET leerdoel='{vragenleerdoel}' WHERE id='{id}' ;''')
+        cursor.commit()
+
+    def update_auteur(self, vragenauteurs, id):
+        cursor = sqlite3.connect(self.database_file)
+        cursor.execute(f''' UPDATE vragen SET auteur='{vragenauteurs}' WHERE id='{id}' ;''')
+        cursor.commit()
+
+
+
+    # UPDATE QUERY 'LEERDOELEN' PAGE:
+    def update_leerdoelen(self, edit_leerdoel, leerdoel_id):
+        cursor = sqlite3.connect(self.database_file)
+        cursor.execute(f'''UPDATE leerdoelen SET leerdoel='{edit_leerdoel}' WHERE id='{leerdoel_id}'; ''')
+        cursor.commit()
+
+
+
+
+    #UPDATE QUERIES 'AUTEURS' PAGE:
+    def update_auteurs(self,edit_voornaam, edit_achternaam, edit_geboortejaar, edit_medewerker, auteurs_id):
+        cursor = sqlite3.connect(self.database_file)
+        cursor.execute(f''' UPDATE auteurs SET voornaam='{edit_voornaam}' WHERE id='{auteurs_id}' ;''')
+        cursor.execute(f''' UPDATE auteurs SET achternaam='{edit_achternaam}' WHERE id='{auteurs_id}' ;''')
+        cursor.execute(f''' UPDATE auteurs SET geboortejaar='{edit_geboortejaar}' WHERE id='{auteurs_id}' ;''')
+        cursor.execute(f''' UPDATE auteurs SET medewerker='{edit_medewerker}' WHERE id='{auteurs_id}' ;''')
+        cursor.commit()
+
+
+    # def vragen_auteur(self, leerdoelform, id):
+    #     cursor = sqlite3.connect(self.database_file)
+    #     cursor.execute(f''' UPDATE vragen SET leerdoel='{leerdoelform}' WHERE id='{id}' ;''')
+    #     cursor.commit()
+
+
+    def delete(self, table_name, id):
+        db = sqlite3.connect(self.database_file)
+        cursor = db.cursor()
+        cursor.execute(f"DELETE FROM {table_name} WHERE id={id}")
+        db.commit()

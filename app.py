@@ -1,6 +1,6 @@
 import os.path
 
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, session
 
 from lib.tablemodel import DatabaseModel
 from lib.Login_details import Login_details
@@ -10,8 +10,10 @@ LISTEN_ALL = "0.0.0.0"
 FLASK_IP = LISTEN_ALL
 FLASK_PORT = 81
 FLASK_DEBUG = True
-
 app = Flask(__name__)
+
+# set the secret key
+app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 # This command creates the "<application directory>/databases/testcorrect_vragen.db" path
 DATABASE_FILE = os.path.join(app.root_path, 'databases', 'testcorrect_vragen.db')
 
@@ -21,24 +23,36 @@ if not os.path.isfile(DATABASE_FILE):
 dbm = DatabaseModel(DATABASE_FILE)
 
 
-# This is the main route that shows the login page
+# checks on each screen if user is logged in, if not redirect to login page
+@app.before_request
+def before_request():
+    if "user" not in session and request.endpoint not in ['login', 'static', 'login_index']:
+        return redirect(url_for('login_index'))
+
+
+# if logged in, show the home page, otherwise show the login page
 @app.route("/")
 def login_index():
-    return render_template('login.html')
+    if "user" in session:
+        return redirect(url_for('index'))
+    else:
+        session.pop('logged_in', None)
+        return render_template('login.html')
 
 
-# Route that handles the login form
-@app.route('/', methods=['GET', 'POST'])
+# checks if username and password are correct, if so, redirect to home page
+@app.route("/login", methods=['GET', 'POST'])
 def login():
     # Check if the form was submitted
-    Username = request.form.get('Username')
-    Password = request.form.get('Password')
     if request.method == 'POST':
+        Username = request.form.get('Username')
+        Password = request.form.get('Password')
         # Check if the username and password are correct
         data = Login_details
         if Username in data:
             if Password == data[Username]:
                 # If the username and password are correct, redirect to the main page
+                session['user'] = Username
                 return redirect(url_for('index'))
             else:
                 # If the password is incorrect, return to the login page
@@ -50,13 +64,20 @@ def login():
             return render_template('login.html', error=error)
 
 
-# This is the main route that shows the index page
+# This is the main route that shows the home page
 @app.route("/home")
 def index():
     tables = dbm.get_table_list()
     return render_template(
-        "tables.html", table_list=tables, database_file=DATABASE_FILE
+        "tables.html", table_list=tables, database_file=DATABASE_FILE, Username=session['user']
     )
+
+
+# Redirects user to logout page and clears session
+@app.route("/logout")
+def logout():
+    session.pop('user', None)
+    return redirect('/')
 
 
 # The table route displays the content of a table
@@ -70,29 +91,52 @@ def table_content(table_name=None):
             "table_details.html", rows=rows, columns=column_names, table_name=table_name
         )
 
-@app.route("/table_details/<table_name>/<id>/update", methods =['GET', 'POST'])
-def update(table_name, id):
-    # match table_name:
-    #     case "auteurs":
-    #
-    #     case "leerdoelen":
-    #
-    #     case "vragen":
+
+@app.route("/table_details/<table_name>/<id>/update", methods=['GET', 'POST'])
+def get_data(table_name, id):
     row, column_names = dbm.get_data(table_name, id)
-    print(row)
 
     return render_template(
         "update.html", table_name=table_name, row=row
     )
 
-@app.route("/table_details/<table_name>/<id>/delete", methods =['GET', 'DELETE'])
-def delete(table_name, id):
-    row, column_names = dbm.get_data(table_name, id)
-    print(row)
 
-    return render_template(
-        "delete.html", table_name=table_name, row=row
-    )
+# App Routes | Update function | Jordy Arjun Sharma
+
+# 'Vragen' Page:
+@app.route("/update/vraag", methods=['POST'])
+def updatevraag():
+    field = request.form['vraag']
+    vragenleerdoel = request.form['vragen_leerdoel']
+    vragenauteurs = request.form['vragen_auteur']
+    id = request.form['id']
+    dbm.update_vraag(field, id)
+    dbm.update_leerdoel(vragenleerdoel, id)
+    dbm.update_auteur(vragenauteurs, id)
+    return redirect(url_for("table_content", table_name='vragen'))
+
+
+
+
+# 'Leerdoelen' Page:
+@app.route("/update/leerdoelen", methods=['POST'])
+def updateleerdoel():
+    edit_leerdoel = request.form['formleerdoel']
+    leerdoel_id = request.form['leerdoelid']
+    dbm.update_leerdoelen(edit_leerdoel, leerdoel_id)
+    return redirect(url_for("table_content", table_name='leerdoelen'))
+
+
+# 'Auteurs' Page:
+@app.route("/update/auteurs", methods=['POST'])
+def updateauteurs():
+    auteurs_id = request.form['auteursid']
+    edit_voornaam = request.form['voornaam']
+    edit_achternaam = request.form['achternaam']
+    edit_geboortejaar = request.form['geboortejaar']
+    edit_medewerker = request.form['medewerker']
+    dbm.update_auteurs(edit_voornaam, edit_achternaam, edit_geboortejaar, edit_medewerker, auteurs_id)
+    return redirect(url_for("table_content", table_name='auteurs'))
 
 
 
@@ -124,7 +168,6 @@ def table_filter(table_name=None):
                 data_type,
                 way
             )
-            print(data_type)
             return render_template(
                 "table_details.html",
                 rows=rows,
@@ -141,6 +184,15 @@ def table_filter(table_name=None):
             return render_template(
                 "table_details.html", rows=rows, columns=column_names, table_name=table_name, filter_name=filter_name
             )
+
+@app.route("/table_details/<table_name>/<id>/delete", methods=['POST', 'GET', 'DELETE'])
+def delete(table_name, id):
+    dbm.delete(table_name, id)
+
+
+    return render_template(
+        "delete.html", table_name=table_name
+    )
 
 
 if __name__ == "__main__":
