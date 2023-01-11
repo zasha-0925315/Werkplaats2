@@ -422,3 +422,7 @@ input [type="text"] {
     padding: 6px;
     margin-top: -41px!important;
 }
+
+#link_id, a {
+    color: #0074d9;
+}
