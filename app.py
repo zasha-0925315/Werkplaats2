@@ -95,9 +95,14 @@ def table_content(table_name=None):
 @app.route("/table_details/<table_name>/<id>/update", methods=['GET', 'POST'])
 def get_data(table_name, id):
     row, column_names = dbm.get_data(table_name, id)
+    leerdoelen_row, column_leerdoelen = dbm.get_list_leerdoelen()
+    auteurs_row, column_auteurs = dbm.get_list_auteurs()
 
     return render_template(
-        "update.html", table_name=table_name, row=row
+        "update.html",
+        table_name=table_name, row=row,
+        leerdoelen_row=leerdoelen_row, column_leerdoelen=column_leerdoelen,
+        auteurs_row=auteurs_row, column_auteurs=column_auteurs
     )
 
 
@@ -105,7 +110,7 @@ def get_data(table_name, id):
 
 # 'Vragen' Page:
 @app.route("/update/vraag", methods=['POST'])
-def updatevraag():
+def updatevraag(table_name):
     field = request.form['vraag']
     vragenleerdoel = request.form['vragen_leerdoel']
     vragenauteurs = request.form['vragen_auteur']

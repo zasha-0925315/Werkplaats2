@@ -119,7 +119,7 @@ tbody tr td:nth-last-child(2){
 }
 
 tbody tr td:last-child{
-    background-color: transparent;
+    /*background-color: transparent;*/
 }
 
 
@@ -330,10 +330,65 @@ section>section {
 
 /* update form */
 
+#update_body {
+    display: flex;
+    justify-content: center;
+}
+
 #update_container {
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+
+#updatetext_box {
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.update_table {
+    display: flex;
+}
+
+.update_table table {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: fit-content;
+    height: fit-content;
+    padding: 10px 30px;
+    margin: 0 10px 10px 10px;
+    background-color: var(--c5);
+    border-radius: var(--rc2);
+    box-shadow: 0 0 8px gray;
+}
+
+.update_table th {
+    background-color: var(--c3);
+}
+
+.update_table tr {
+    background-color: var(--c2);
+}
+
+.update_table tr td:first-child {
+    border-top-left-radius: var(--rc);
+    border-bottom-left-radius: var(--rc);
+}
+
+.update_table tr td:last-child{
+    border-top-right-radius: var(--rc);
+    border-bottom-right-radius: var(--rc);
+}
+
+.update_table tr td:nth-last-child(2){
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+#update_vrage_box {
+    display: flex;
+    align-items: center;
 }
 
 .update_form {
@@ -347,13 +402,14 @@ section>section {
     border: 0;
     border-collapse: collapse;
     border-spacing: 0;
-    margin: 2em 0;
+    margin: 0 0;
     width: fit-content;
     padding: 10px 30px;
     background-color: var(--c5);
     border-radius: var(--rc2);
     box-shadow: 0 0 8px gray;
 }
+
 #voornaam, #achternaam, #geboortejaar, #leerdoel, #vraag, #auteur {
     display: inline-flex;
     flex-direction: column;
