@@ -136,6 +136,10 @@ tbody tr td:last-child{
     box-shadow: 0 0 8px gray;
 }
 
+#form_buttons_box {
+    display: flex;
+}
+
 #table_box tr td:last-child {
     border: none;
     width: 0;
