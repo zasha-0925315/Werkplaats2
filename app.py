@@ -199,9 +199,9 @@ def delete(table_name, id):
 if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)
 
-@app.route("/csv_test.html/<table_name>")
+@app.route("/table_details/csv_test.html")
 def get_csv():
-    csv = "id,voornaam,achternaam,geboortejaar,medewerker\n"
+    csv = "{{ table_name }}\n"
     output = make_response(csv)
     output.headers["Content-Disposition"] = "attachment; filename=export.csv"
     output.headers["Content-type"] = "text/csv"
