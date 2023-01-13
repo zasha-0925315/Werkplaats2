@@ -1,7 +1,7 @@
 import os.path
-import csv
 
-from flask import Flask, render_template, request, url_for, redirect, session, make_response
+from flask import Flask, render_template, request, url_for, redirect, session
+from flask_csv import send_csv
 
 from lib.tablemodel import DatabaseModel
 from lib.Login_details import Login_details
@@ -195,15 +195,11 @@ def delete(table_name, id):
         "delete.html", table_name=table_name
     )
 
+@app.route("/table_details/<table_name>/csv")
+def get_csv(table_name):
+    rows, column_names = dbm.get_table_content(table_name)
+    return send_csv([{column_names[i]: row[i] for i in range(len(column_names))} for row in rows], column_names, f"{table_name}.csv")
 
 if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)
 
-@app.route("/table_details/csv_test.html")
-def get_csv():
-    csv = "{{ table_name }}\n"
-    output = make_response(csv)
-    output.headers["Content-Disposition"] = "attachment; filename=export.csv"
-    output.headers["Content-type"] = "text/csv"
-
-    return output
