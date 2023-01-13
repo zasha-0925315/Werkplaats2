@@ -198,7 +198,20 @@ def delete(table_name, id):
 @app.route("/table_details/<table_name>/csv")
 def get_csv(table_name):
     rows, column_names = dbm.get_table_content(table_name)
-    return send_csv([{column_names[i]: row[i] for i in range(len(column_names))} for row in rows], f"{table_name}.csv", ["id", "leerdoel"])
+    csv_string = ""
+    for column_name in column_names:
+        csv_string += column_name + ";"
+    csv_string = csv_string + "\n"
+
+    for row in rows:
+        for field in row:
+            csv_string = csv_string + str(field) + ";"
+        csv_string = csv_string + "\n"
+
+    output = make_response(csv_string)
+    output.headers["Content-Disposition"] = "attachment; filename=" + table_name + "_export.csv"
+    output.headers["Content-type"] = "text/csv"
+    return output
 
 if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)
