@@ -205,7 +205,7 @@ def get_csv(table_name):
 
     for row in rows:
         for field in row:
-            csv_string = csv_string + str(field) + ";"
+            csv_string = csv_string + str(field) + ","
         csv_string = csv_string + "\n"
 
     output = make_response(csv_string)
