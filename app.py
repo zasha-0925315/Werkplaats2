@@ -200,7 +200,7 @@ def get_csv(table_name):
     rows, column_names = dbm.get_table_content(table_name)
     csv_string = ""
     for column_name in column_names:
-        csv_string += column_name + ";"
+        csv_string += column_name + ","
     csv_string = csv_string + "\n"
 
     for row in rows:
