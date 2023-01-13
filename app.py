@@ -1,6 +1,7 @@
 import os.path
 
-from flask import Flask, render_template, request, url_for, redirect, session
+from flask import Flask, render_template, request, url_for, redirect, session, make_response
+
 
 from lib.tablemodel import DatabaseModel
 from lib.Login_details import Login_details
@@ -199,6 +200,24 @@ def delete(table_name, id):
         "delete.html", table_name=table_name
     )
 
+@app.route("/table_details/<table_name>/csv")
+def get_csv(table_name):
+    rows, column_names = dbm.get_table_content(table_name)
+    csv_string = ""
+    for column_name in column_names:
+        csv_string += column_name + ","
+    csv_string = csv_string + "\n"
+
+    for row in rows:
+        for field in row:
+            csv_string = csv_string + str(field) + ","
+        csv_string = csv_string + "\n"
+
+    output = make_response(csv_string)
+    output.headers["Content-Disposition"] = "attachment; filename=" + table_name + "_export.csv"
+    output.headers["Content-type"] = "text/csv"
+    return output
 
 if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)
+

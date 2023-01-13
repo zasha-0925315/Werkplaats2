@@ -136,6 +136,10 @@ tbody tr td:last-child{
     box-shadow: 0 0 8px gray;
 }
 
+#form_buttons_box {
+    display: flex;
+}
+
 #table_box tr td:last-child {
     border: none;
     width: 0;
@@ -477,4 +481,8 @@ input [type="text"] {
     margin-left: 487px!important;
     padding: 6px;
     margin-top: -41px!important;
+}
+
+#link_id a {
+    color: #0074d9;
 }

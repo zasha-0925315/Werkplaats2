@@ -204,3 +204,5 @@ class DatabaseModel:
         cursor = db.cursor()
         cursor.execute(f"DELETE FROM {table_name} WHERE id={id}")
         db.commit()
+
+
