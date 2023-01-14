@@ -22,6 +22,7 @@ class DatabaseModel:
     def get_table_content(self, table_name):
         cursor = sqlite3.connect(self.database_file).cursor()
 
+        # a match to give the possibility to change the standard query to something specific depending on the table
         match table_name:
             case "vragen":
                 cursor.execute(f"SELECT vragen.id, leerdoelen.leerdoel, vraag, "
@@ -31,6 +32,7 @@ class DatabaseModel:
                                f"LEFT JOIN auteurs on vragen.auteur = auteurs.id ")
             case _:
                 cursor.execute(f"SELECT * FROM {table_name}")
+
         # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
         table_headers = [column_name[0] for column_name in cursor.description]
         table_content = cursor.fetchall()
@@ -38,7 +40,8 @@ class DatabaseModel:
         # Note that this method returns 2 variables!
         return table_content, table_headers
 
-    def get_table_filtered(self, table_name, filter_name):
+    # the function to change the shown row in the table depending on the selected filter
+    def get_table_filtered(self, filter_name):
         cursor = sqlite3.connect(self.database_file).cursor()
 
         match filter_name:
@@ -85,6 +88,7 @@ class DatabaseModel:
         # Note that this method returns 2 variables!
         return table_content, table_headers
 
+    # the function to search for something specific in the table
     def get_table_search(self, table_name, selected_column, typed, between_typed, between_typed2, data_type, way):
         cursor = sqlite3.connect(self.database_file).cursor()
 
@@ -118,13 +122,14 @@ class DatabaseModel:
         # Note that this method returns 2 variables!
         return table_content, table_headers
 
-
-    def get_data(self, table_name, id):
+    # function to select a single row
+    def get_data(self, table_name, table_id):
         cursor = sqlite3.connect(self.database_file).cursor()
         if table_name == 'vragen':
             cursor.execute(f"SELECT * FROM vragen INNER JOIN leerdoelen ON vragen.leerdoel = leerdoelen.id")
 
-        cursor.execute(f"SELECT * FROM {table_name} WHERE id={id}")
+        cursor.execute(f"SELECT * FROM {table_name} WHERE id={table_id}")
+
         # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
         table_headers = [column_name[0] for column_name in cursor.description]
         table_content = cursor.fetchone()
@@ -132,10 +137,10 @@ class DatabaseModel:
         # Note that this method returns 2 variables!
         return table_content, table_headers
 
+    # function to get the id and leerdoel for showing them in de vragen table
     def get_list_leerdoelen(self):
         cursor = sqlite3.connect(self.database_file).cursor()
         cursor.execute(f"SELECT id, leerdoel FROM leerdoelen")
-
 
         # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
         table_headers = [column_name[0] for column_name in cursor.description]
@@ -144,6 +149,7 @@ class DatabaseModel:
         # Note that this method returns 2 variables!
         return table_content, table_headers
 
+    # function to get the id and full names of the auteurs for showing them in de vragen table
     def get_list_auteurs(self):
         cursor = sqlite3.connect(self.database_file).cursor()
         cursor.execute(f"SELECT id, (voornaam || ' ' || achternaam) FROM auteurs")
@@ -156,23 +162,21 @@ class DatabaseModel:
         return table_content, table_headers
 
 # HERE ARE THE SQL QUERIES OF THE UPDATE FUNCTION
-# UPDATE QUERIES 'VRAGEN' PAGE:
-    def update_vraag(self, field, id):
+    # UPDATE QUERIES 'VRAGEN' PAGE:
+    def update_vraag(self, field, table_id):
         cursor = sqlite3.connect(self.database_file)
-        cursor.execute(f''' UPDATE vragen SET vraag='{field}' WHERE id='{id}' ;''')
+        cursor.execute(f''' UPDATE vragen SET vraag='{field}' WHERE id='{table_id}' ;''')
         cursor.commit()
 
-    def update_leerdoel(self, vragenleerdoel, id):
+    def update_leerdoel(self, vragenleerdoel, table_id):
         cursor = sqlite3.connect(self.database_file)
-        cursor.execute(f''' UPDATE vragen SET leerdoel='{vragenleerdoel}' WHERE id='{id}' ;''')
+        cursor.execute(f''' UPDATE vragen SET leerdoel='{vragenleerdoel}' WHERE id='{table_id}' ;''')
         cursor.commit()
 
-    def update_auteur(self, vragenauteurs, id):
+    def update_auteur(self, vragenauteurs, table_id):
         cursor = sqlite3.connect(self.database_file)
-        cursor.execute(f''' UPDATE vragen SET auteur='{vragenauteurs}' WHERE id='{id}' ;''')
+        cursor.execute(f''' UPDATE vragen SET auteur='{vragenauteurs}' WHERE id='{table_id}' ;''')
         cursor.commit()
-
-
 
     # UPDATE QUERY 'LEERDOELEN' PAGE:
     def update_leerdoelen(self, edit_leerdoel, leerdoel_id):
@@ -180,11 +184,8 @@ class DatabaseModel:
         cursor.execute(f'''UPDATE leerdoelen SET leerdoel='{edit_leerdoel}' WHERE id='{leerdoel_id}'; ''')
         cursor.commit()
 
-
-
-
-    #UPDATE QUERIES 'AUTEURS' PAGE:
-    def update_auteurs(self,edit_voornaam, edit_achternaam, edit_geboortejaar, edit_medewerker, auteurs_id):
+    # UPDATE QUERIES 'AUTEURS' PAGE:
+    def update_auteurs(self, edit_voornaam, edit_achternaam, edit_geboortejaar, edit_medewerker, auteurs_id):
         cursor = sqlite3.connect(self.database_file)
         cursor.execute(f''' UPDATE auteurs SET voornaam='{edit_voornaam}' WHERE id='{auteurs_id}' ;''')
         cursor.execute(f''' UPDATE auteurs SET achternaam='{edit_achternaam}' WHERE id='{auteurs_id}' ;''')
@@ -192,17 +193,9 @@ class DatabaseModel:
         cursor.execute(f''' UPDATE auteurs SET medewerker='{edit_medewerker}' WHERE id='{auteurs_id}' ;''')
         cursor.commit()
 
-
-    # def vragen_auteur(self, leerdoelform, id):
-    #     cursor = sqlite3.connect(self.database_file)
-    #     cursor.execute(f''' UPDATE vragen SET leerdoel='{leerdoelform}' WHERE id='{id}' ;''')
-    #     cursor.commit()
-
-
-    def delete(self, table_name, id):
+    # function to delete a question
+    def delete(self, table_name, table_id):
         db = sqlite3.connect(self.database_file)
         cursor = db.cursor()
-        cursor.execute(f"DELETE FROM {table_name} WHERE id={id}")
+        cursor.execute(f"DELETE FROM {table_name} WHERE id={table_id}")
         db.commit()
-
-

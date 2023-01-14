@@ -13,6 +13,7 @@
 <main>
     <div>
         <h2>Zoek naar:</h2>
+
         {% if table_name == 'vragen' %}
             {% include "vragen_form.html" %}
         {% endif %}
@@ -21,6 +22,7 @@
             {% include "auteur_leerdoelen_form.html" %}
         {% endif %}
     </div>
+
     <div id="table_box">
         <table>
             <thead>

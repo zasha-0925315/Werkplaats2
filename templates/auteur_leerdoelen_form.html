@@ -2,52 +2,52 @@
     <div id="form_box">
         <form method="post">
             <div class="form_list">
-            <div>
-                <label for="column_select">Welke kolom:</label>
-                <select id="column_select" name="column_select">
-                    {% for column in columns %}
-                        <option>{{ column }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div>
-                <label for="way">zoek manier:</label>
-                <select id="way" name="way">
-                    <option id="like" value="like">bevat</option>
-                    <option id="is_not" value="is_not">bevat niet</option>
-                    <option id="between" value="between">tussen</option>
-                    <option id="wrong_data_type" value="wrong_data_type">foute data</option>
-                </select>
-            </div>
-            <div id="filter_amount">
-            <div id="like_input">
-                <label for="typed">Waarde:</label>
-                <input id="typed" type="text" name="typed">
-            </div>
-            <div id="between_input">
-                <label for="between_typed">Waardes:</label>
                 <div>
-                    <input id="between_typed" type="text" name="between_typed" value="">
-                    <label for="between_typed2">-</label>
-                    <input id="between_typed2" type="text" name="between_typed2" value="">
+                    <label for="column_select">Welke kolom:</label>
+                    <select id="column_select" name="column_select">
+                        {% for column in columns %}
+                            <option>{{ column }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label for="way">zoek manier:</label>
+                    <select id="way" name="way">
+                        <option id="like" value="like">bevat</option>
+                        <option id="is_not" value="is_not">bevat niet</option>
+                        <option id="between" value="between">tussen</option>
+                        <option id="wrong_data_type" value="wrong_data_type">foute data</option>
+                    </select>
+                </div>
+                <div id="filter_amount">
+                    <div id="like_input">
+                        <label for="typed">Waarde:</label>
+                        <input id="typed" type="text" name="typed">
+                    </div>
+                    <div id="between_input">
+                        <label for="between_typed">Waardes:</label>
+                        <div>
+                            <input id="between_typed" type="text" name="between_typed" value="">
+                            <label for="between_typed2">-</label>
+                            <input id="between_typed2" type="text" name="between_typed2" value="">
+                        </div>
+                    </div>
+                    <div id="data_type_input">
+                        <label for="data_type">data type:</label>
+                        <select id="data_type" name="data_type">
+                            <option id="boolean_value" value="boolean">geen 0 of 1</option>
+                            <option id="date_1900" value="date_1900">geboortejaar onder 1900 jaar</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="button1">Search</button>
                 </div>
             </div>
-            <div id="data_type_input">
-                <label for="data_type">data type:</label>
-                <select id="data_type" name="data_type">
-                    <option id="boolean_value" value="boolean">geen 0 of 1</option>
-                    <option id="date_1900" value="date_1900">geboortejaar onder 1900 jaar</option>
-                </select>
-            </div>
-            </div>
-            <div>
-                <button type="submit" class="button1">Search</button>
-            </div>
-            </div>
         </form>
-    <div id="form_buttons_box">
-        <a href="/table_details/{{ table_name }}"><button class="button2">Reset</button></a>
-        <a href="/table_details/{{ table_name }}/csv"><button class="button2">Export CSV</button></a>
-    </div>
+        <div id="form_buttons_box">
+            <a href="/table_details/{{ table_name }}"><button class="button2">Reset</button></a>
+            <a href="/table_details/{{ table_name }}/csv"><button class="button2">Export CSV</button></a>
+        </div>
     </div>
 </div>

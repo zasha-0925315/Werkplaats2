@@ -46,14 +46,14 @@ def login_index():
 def login():
     # Check if the form was submitted
     if request.method == 'POST':
-        Username = request.form.get('Username')
-        Password = request.form.get('Password')
+        username = request.form.get('Username')
+        password = request.form.get('Password')
         # Check if the username and password are correct
         data = Login_details
-        if Username in data:
-            if Password == data[Username]:
+        if username in data:
+            if password == data[username]:
                 # If the username and password are correct, redirect to the main page
-                session['user'] = Username
+                session['user'] = username
                 return redirect(url_for('index'))
             else:
                 # If the password is incorrect, return to the login page
@@ -94,8 +94,8 @@ def table_content(table_name=None):
 
 
 @app.route("/table_details/<table_name>/<id>/update", methods=['GET', 'POST'])
-def get_data(table_name, id):
-    row, column_names = dbm.get_data(table_name, id)
+def get_data(table_name, table_id):
+    row, column_names = dbm.get_data(table_name, table_id)
     leerdoelen_row, column_leerdoelen = dbm.get_list_leerdoelen()
     auteurs_row, column_auteurs = dbm.get_list_auteurs()
 
@@ -111,17 +111,15 @@ def get_data(table_name, id):
 
 # 'Vragen' Page:
 @app.route("/update/vraag", methods=['POST'])
-def updatevraag(table_name):
+def updatevraag():
     field = request.form['vraag']
     vragenleerdoel = request.form['vragen_leerdoel']
     vragenauteurs = request.form['vragen_auteur']
-    id = request.form['id']
+    id_table = request.form['id']
     dbm.update_vraag(field, id)
-    dbm.update_leerdoel(vragenleerdoel, id)
-    dbm.update_auteur(vragenauteurs, id)
+    dbm.update_leerdoel(vragenleerdoel, id_table)
+    dbm.update_auteur(vragenauteurs, id_table)
     return redirect(url_for("table_content", table_name='vragen'))
-
-
 
 
 # 'Leerdoelen' Page:
@@ -143,7 +141,6 @@ def updateauteurs():
     edit_medewerker = request.form['medewerker']
     dbm.update_auteurs(edit_voornaam, edit_achternaam, edit_geboortejaar, edit_medewerker, auteurs_id)
     return redirect(url_for("table_content", table_name='auteurs'))
-
 
 
 @app.route("/table_details/<table_name>", methods=("POST", "GET"))
@@ -186,19 +183,20 @@ def table_filter(table_name=None):
             filter_name = ""
             if request.method == 'POST':
                 filter_name = str(request.form['filter_name'])
-            rows, column_names = dbm.get_table_filtered(table_name, filter_name)
+            rows, column_names = dbm.get_table_filtered(filter_name)
             return render_template(
                 "table_details.html", rows=rows, columns=column_names, table_name=table_name, filter_name=filter_name
             )
 
-@app.route("/table_details/<table_name>/<id>/delete", methods=['POST', 'GET', 'DELETE'])
-def delete(table_name, id):
-    dbm.delete(table_name, id)
 
+@app.route("/table_details/<table_name>/<id>/delete", methods=['POST', 'GET', 'DELETE'])
+def delete(table_name, table_id):
+    dbm.delete(table_name, table_id)
 
     return render_template(
         "delete.html", table_name=table_name
     )
+
 
 @app.route("/table_details/<table_name>/csv")
 def get_csv(table_name):
@@ -218,6 +216,6 @@ def get_csv(table_name):
     output.headers["Content-type"] = "text/csv"
     return output
 
+
 if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)
-

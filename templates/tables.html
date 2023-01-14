@@ -9,33 +9,33 @@
     <link rel="stylesheet" href="/static/basic.css" type="text/css">
 </head>
 <body>
-{% include "header.html" %}
-<main>
-{% block content %}
-    <h1>Welkom, <b>{{Username}}</b></h1>
-    <h1>Selecteer de tabel die je wilt inzien:</h1>
-    <br>
-{% endblock %}
-<div class="redirecthome">
-<div class="containerbutton">
-        <a href="/table_details/vragen">
-            <img src="{{url_for('static', filename='Vragen.png')}}" class="redirectbutton" alt="vragen_knop">
-        <p class="redirecttext">Vragen</p>
-        </a>
-</div>
-<div class="containerbutton">
-        <a href="/table_details/auteurs">
-            <img src="{{url_for('static', filename='Auteurs.png')}}" class="redirectbutton" alt="auteurs_knop">
-        <p class="redirecttext">Auteurs</p>
-        </a>
-</div>
-<div class="containerbutton">
-        <a href="/table_details/leerdoelen">
-            <img src="{{url_for('static', filename='Leerdoelen.png')}}" class="redirectbutton" alt="leerdoelen_knop">
-        <p class="redirecttext">Leerdoelen</p>
-        </a>
-</div>
-</div>
-</main>
+    {% include "header.html" %}
+    <main>
+        {% block content %}
+            <h1>Welkom, <b>{{Username}}</b></h1>
+            <h1>Selecteer de tabel die je wilt inzien:</h1>
+            <br>
+        {% endblock %}
+        <div class="redirecthome">
+            <div class="containerbutton">
+                <a href="/table_details/vragen">
+                    <img src="{{url_for('static', filename='Vragen.png')}}" class="redirectbutton" alt="vragen_knop">
+                    <p class="redirecttext">Vragen</p>
+                </a>
+            </div>
+            <div class="containerbutton">
+                <a href="/table_details/auteurs">
+                    <img src="{{url_for('static', filename='Auteurs.png')}}" class="redirectbutton" alt="auteurs_knop">
+                    <p class="redirecttext">Auteurs</p>
+                </a>
+            </div>
+            <div class="containerbutton">
+                <a href="/table_details/leerdoelen">
+                    <img src="{{url_for('static', filename='Leerdoelen.png')}}" class="redirectbutton" alt="leerdoelen_knop">
+                    <p class="redirecttext">Leerdoelen</p>
+                </a>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

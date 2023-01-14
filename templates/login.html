@@ -12,22 +12,23 @@
  <div class="container">
       <div class="login">
           <h1>Inloggen</h1>
-      {% block content %}
-      <form action='/login' method="post">
-      <h3>Gebruikersnaam</h3>
-          <label>
-              <input type="text" name="Username" required>
-          </label>
-      <h3>Wachtwoord</h3>
-          <label>
-              <input type="password" name="Password" required>
-          </label><br>
-                     {% if error %}
-        <div class="error"><strong>Error:</strong> {{ error }} </div>
-      {% endif %}
-        <input class="btn btn-default" type="submit" value="Login">
-      </form>
-      {% endblock %}
+          {% block content %}
+              <form action='/login' method="post">
+                  <h3>Gebruikersnaam</h3>
+                  <label>
+                      <input type="text" name="Username" required>
+                  </label>
+                  <h3>Wachtwoord</h3>
+                  <label>
+                      <input type="password" name="Password" required>
+                  </label>
+                  <br>
+                  {% if error %}
+                      <div class="error"><strong>Error:</strong> {{ error }} </div>
+                  {% endif %}
+                  <input class="btn btn-default" type="submit" value="Login">
+              </form>
+          {% endblock %}
       </div>
  </div>
 </body>
