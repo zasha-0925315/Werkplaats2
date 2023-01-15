@@ -4,5 +4,6 @@ Login_details = {
     "Zasha": "Zasha1",
     "Dylan": "Dylan1",
     "Jordy": "Jordy1",
-    "Ishan": "Ishan1"
+    "Ishan": "Ishan1",
+    "Docent": "Docent1"
 }

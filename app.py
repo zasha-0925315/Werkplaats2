@@ -93,9 +93,10 @@ def table_content(table_name=None):
         )
 
 
+# route to the update page
 @app.route("/table_details/<table_name>/<id>/update", methods=['GET', 'POST'])
-def get_data(table_name, table_id):
-    row, column_names = dbm.get_data(table_name, table_id)
+def get_data(table_name, id):
+    row, column_names = dbm.get_data(table_name, id)
     leerdoelen_row, column_leerdoelen = dbm.get_list_leerdoelen()
     auteurs_row, column_auteurs = dbm.get_list_auteurs()
 
@@ -143,6 +144,7 @@ def updateauteurs():
     return redirect(url_for("table_content", table_name='auteurs'))
 
 
+# route to the vragen, leerdoelen or auteurs table
 @app.route("/table_details/<table_name>", methods=("POST", "GET"))
 def table_filter(table_name=None):
     match table_name:
@@ -189,15 +191,16 @@ def table_filter(table_name=None):
             )
 
 
+# route for deleting a row
 @app.route("/table_details/<table_name>/<id>/delete", methods=['POST', 'GET', 'DELETE'])
-def delete(table_name, table_id):
-    dbm.delete(table_name, table_id)
+def delete(table_name, id):
+    dbm.delete(table_name, id)
 
     return render_template(
         "delete.html", table_name=table_name
     )
 
-
+# route for downloading a table as a csv file
 @app.route("/table_details/<table_name>/csv")
 def get_csv(table_name):
     rows, column_names = dbm.get_table_content(table_name)
