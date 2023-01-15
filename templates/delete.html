@@ -16,11 +16,11 @@
 <main>
     <h1>Delete pagina</h1>
     <p>Hier kunt u een rij verwijderen.</p>
-    <form class="delete" action="/table_details/{{ table_name }}" method="GET">
+    <form class="delete" action="/table_details/{{ table_name }}/{{ id }}/confirmed_delete" method="GET">
         <p>Klik op 'Ja' om het te bevestigen of klik 'Nee' om terug te keren naar de lijst.</p>
         <input id="ja_knop" type="submit" value="Ja">
-        <a id="nee_knop" href="/table_details/{{ table_name }}">Nee</a>
     </form>
+    <a id="nee_knop" href="/table_details/{{ table_name }}">Nee</a>
 </main>
 </body>
 </html>

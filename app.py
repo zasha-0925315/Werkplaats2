@@ -191,14 +191,19 @@ def table_filter(table_name=None):
             )
 
 
+@app.route("/table_details/<table_name>/<id>/delete")
+def delete_page(table_name, id):
+    return render_template(
+        "delete.html", table_name=table_name, id=id
+    )
+
+
 # route for deleting a row
-@app.route("/table_details/<table_name>/<id>/delete", methods=['POST', 'GET', 'DELETE'])
+@app.route("/table_details/<table_name>/<id>/confirmed_delete", methods=['POST', 'GET', 'DELETE'])
 def delete(table_name, id):
     dbm.delete(table_name, id)
 
-    return render_template(
-        "delete.html", table_name=table_name
-    )
+    return redirect(url_for("table_content", table_name=table_name))
 
 
 # route for downloading a table as a csv file
