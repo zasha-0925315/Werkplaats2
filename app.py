@@ -191,6 +191,7 @@ def table_filter(table_name=None):
             )
 
 
+# route to the delete page
 @app.route("/table_details/<table_name>/<id>/delete")
 def delete_page(table_name, id):
     return render_template(
@@ -198,7 +199,7 @@ def delete_page(table_name, id):
     )
 
 
-# route for deleting a row
+# if the user confirms the delete, the data will be deleted
 @app.route("/table_details/<table_name>/<id>/confirmed_delete", methods=['POST', 'GET', 'DELETE'])
 def delete(table_name, id):
     dbm.delete(table_name, id)
