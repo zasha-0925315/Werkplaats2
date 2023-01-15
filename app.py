@@ -200,6 +200,7 @@ def delete(table_name, id):
         "delete.html", table_name=table_name
     )
 
+
 # route for downloading a table as a csv file
 @app.route("/table_details/<table_name>/csv")
 def get_csv(table_name):
