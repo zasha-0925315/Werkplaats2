@@ -145,6 +145,7 @@ body {
 }
 
 input[type=submit] {
+    color: white;
   background-color: #3ab753;
   padding: 12px 20px;
   cursor: pointer;
@@ -197,3 +198,5 @@ h3 {
     margin-left: 8%;
     text-align: left;
 }
+
+
