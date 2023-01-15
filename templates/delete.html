@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8"/>
     <title>Test-Correct</title>
@@ -19,8 +19,8 @@
     <form class="delete" action="/table_details/{{ table_name }}" method="GET">
         <p>Klik op 'Ja' om het te bevestigen of klik 'Nee' om terug te keren naar de lijst.</p>
         <input id="ja_knop" type="submit" value="Ja">
-        <a id="nee_knop" href="/table_details/{{ table_name }}">Nee</a>
     </form>
+<a href="/table_details/{{ table_name }}"><button class="nee_knop">Nee</button></a>
 </main>
 </body>
 </html>
