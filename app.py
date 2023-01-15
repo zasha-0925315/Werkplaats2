@@ -188,7 +188,7 @@ def table_filter(table_name=None):
                 "table_details.html", rows=rows, columns=column_names, table_name=table_name, filter_name=filter_name
             )
 
-
+# 'Delete' Page:
 @app.route("/table_details/<table_name>/<id>/delete", methods=['POST', 'GET', 'DELETE'])
 def delete(table_name, table_id):
     dbm.delete(table_name, table_id)
