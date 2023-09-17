@@ -102,6 +102,7 @@ class DatabaseModel:
 
         match way:
             case "like":
+                # cursor.execute(f"SELECT * FROM ? WHERE ? LIKE ?", [table_name, selected_column, typed])
                 cursor.execute(f"SELECT * FROM {table_name} "
                                f"WHERE {selected_column} LIKE '%{typed}%'")
             case "is_not":
