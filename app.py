@@ -89,9 +89,11 @@ def table_content(table_name=None):
         return "Missing table name", 400  # HTTP 400 = Bad Request
     else:
         rows, column_names = dbm.get_table_content(table_name)
-        return render_template(
+        resp = make_response(render_template(
             "table_details.html", rows=rows, columns=column_names, table_name=table_name
-        )
+        ))
+        resp.headers['Access-Control-Allow-Origin'] = '*'
+        return resp
 
 
 # route to the update page
