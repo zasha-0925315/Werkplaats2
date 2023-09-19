@@ -90,9 +90,10 @@ def table_content(table_name=None):
     if not table_name:
         return "Missing table name", 400  # HTTP 400 = Bad Request
     else:
+
         rows, column_names = dbm.get_table_content(table_name)
         resp = make_response(render_template(
-            "table_details.html", rows=rows, columns=column_names, table_name=table_name
+            "table_details.html", rows=rows, columns=column_names, table_name=table_name, token=app.secret_key
         ))
         resp.headers['Access-Control-Allow-Origin'] = '*'
         return resp
@@ -152,6 +153,7 @@ def updateauteurs():
 # route to the vragen, leerdoelen or auteurs table
 @app.route("/table_details/<table_name>", methods=("POST", "GET"))
 def table_filter(table_name=None):
+    token = request.form['token']
     match table_name:
         case "auteurs" | "leerdoelen":
             selected_column = ""
@@ -161,7 +163,7 @@ def table_filter(table_name=None):
             data_type = ""
             way = ""
 
-            if request.method == 'POST':
+            if request.method == 'POST' and token == app.secret_key:
                 selected_column = request.form['column_select']
                 typed = request.form['typed']
                 between_typed = request.form['between_typed']
